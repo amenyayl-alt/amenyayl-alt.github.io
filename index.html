@@ -4,9 +4,190 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Milana's Choice</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #050510;
+      color: #e8e0d0;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #c9a96e;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #e8e0d0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: #c9a96e; }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #c9a96e;
+      line-height: 1.4;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .portals {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2rem;
+      padding: 0 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portal {
+      flex: 1;
+      max-width: 300px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .portal:hover { transform: translateY(-8px); }
+
+    .portal.center {
+      flex: 1.2;
+      max-width: 360px;
+    }
+
+    .portal img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .portal-label {
+      text-align: center;
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border: 0.5px solid rgba(201, 169, 110, 0.3);
+      border-radius: 8px;
+    }
+
+    .portal-label h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: #c9a96e;
+      margin-bottom: 0.5rem;
+    }
+
+    .portal-label p {
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: #9990a0;
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+    }
+
+    .portal.center .portal-label {
+      border-color: rgba(201, 169, 110, 0.6);
+      background: rgba(201, 169, 110, 0.05);
+    }
+
+    .footer-line {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #9990a0;
+      letter-spacing: 0.08em;
+    }
+
+    .divider {
+      text-align: center;
+      color: #c9a96e;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.3em;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, I'm Alina</h1>
-  <p>Welcome to Milana's Choice — my creative corner of the internet.</p>
+
+  <nav>
+    <div class="logo">Milana's Choice</div>
+    <ul class="nav-links">
+      <li><a href="#">Professional</a></li>
+      <li><a href="#">Creative</a></li>
+      <li><a href="#">Esoteric</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Exploring Meaning, Intelligence,<br>Creation and the Future of Human Thought</h1>
+
+    <div class="portals">
+
+      <div class="portal">
+        <img src="portal-professional.png" alt="Professional portal">
+        <div class="portal-label">
+          <h2>PROFESSIONAL</h2>
+          <p>UX · AI</p>
+        </div>
+      </div>
+
+      <div class="portal center">
+        <img src="portal-creative.png" alt="Creative portal">
+        <div class="portal-label">
+          <h2>CREATIVE ✦</h2>
+          <p>Music · Art · Writing · Video<br>Storytelling · Design</p>
+        </div>
+      </div>
+
+      <div class="portal">
+        <img src="portal-esoteric.png" alt="Esoteric portal">
+        <div class="portal-label">
+          <h2>ESOTERIC</h2>
+          <p>Руны · Таро<br>Символы · Практики</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-line">
+    <div class="divider">✦ · ✦</div>
+    Built with curiosity, creativity, and a little help from AI ♡
+  </div>
+
 </body>
 </html>
