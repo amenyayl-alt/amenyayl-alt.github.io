@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Magic Drawing Studio ✨</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  :root {
+    --bubblegum: #FF6FA5;
+    --sunny: #FFD93D;
+    --sky: #6EC6FF;
+    --grape: #9B7EDE;
+    --mint: #6FE3B4;
+    --paper: #FFF9F0;
+    --ink: #4A3B5C;
+  }
+
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    font-family: "Comic Sans MS", "Chalkboard SE", "Marker Felt", sans-serif;
+    background: linear-gradient(135deg, #FFE5F1 0%, #E5F3FF 50%, #FFF9E5 100%);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px 4px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  h1 {
+    font-size: clamp(18px, 4vw, 28px);
+    color: var(--ink);
+    text-shadow: 2px 2px 0 #fff;
+    letter-spacing: 1px;
+  }
+  h1 .wiggle { display: inline-block; animation: wiggle 2s ease-in-out infinite; }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
+
+  .top-buttons { display: flex; gap: 8px; }
+
+  .btn {
+    border: none;
+    border-radius: 18px;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.18);
+    transition: transform 0.08s, box-shadow 0.08s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.18); }
+  .btn-undo { background: var(--grape); }
+  .btn-clear { background: var(--bubblegum); }
+  .btn-save { background: var(--mint); color: var(--ink); }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 4px 14px 6px;
+  }
+  .tab {
+    border: none;
+    border-radius: 16px 16px 6px 6px;
+    padding: 9px 18px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--ink);
+    background: rgba(255,255,255,0.55);
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.10);
+    transition: transform 0.08s;
+  }
+  .tab:active { transform: translateY(2px); }
+  .tab.active {
+    background: #fff;
+    box-shadow: 0 0 0 3px var(--sunny), 0 3px 0 rgba(0,0,0,0.10);
+  }
+
+  /* ── Coloring template strip ── */
+  .templates {
+    display: none;
+    gap: 10px;
+    padding: 4px 14px 8px;
+    overflow-x: auto;
+    align-items: center;
+    -webkit-overflow-scrolling: touch;
+  }
+  .templates.show { display: flex; }
+  .template-thumb {
+    border: 4px solid #fff;
+    border-radius: 16px;
+    background: var(--paper);
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+    flex-shrink: 0;
+    transition: transform 0.1s;
+    padding: 0;
+    line-height: 0;
+  }
+  .template-thumb:active { transform: scale(0.93); }
+  .template-thumb.active {
+    border-color: var(--sunny);
+    box-shadow: 0 0 0 3px rgba(255,217,61,0.4), 0 3px 0 rgba(0,0,0,0.12);
+  }
+  .template-thumb canvas { border-radius: 11px; }
+
+  main {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    padding: 0 14px 10px;
+    min-height: 0;
+  }
+
+  .tools {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 4px;
+    max-width: 92px;
+  }
+
+  .tool {
+    width: 64px;
+    height: 64px;
+    border: 4px solid transparent;
+    border-radius: 20px;
+    background: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.12);
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .tool:active { transform: scale(0.92); }
+  .tool.active {
+    border-color: var(--sunny);
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px rgba(255, 217, 61, 0.35), 0 4px 0 rgba(0,0,0,0.12);
+  }
+  .tool-divider {
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(74,59,92,0.15);
+    margin: 2px 8px;
+    flex-shrink: 0;
+  }
+
+  .canvas-wrap {
+    flex: 1;
+    position: relative;
+    border-radius: 24px;
+    background: var(--paper);
+    box-shadow: inset 0 0 0 6px #fff, 0 6px 20px rgba(0,0,0,0.12);
+    overflow: hidden;
+    min-width: 0;
+  }
+  canvas#canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 14px 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .colors { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .swatch {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+    transition: transform 0.1s;
+    flex-shrink: 0;
+  }
+  .swatch:active { transform: scale(0.9); }
+  .swatch.active { transform: scale(1.25); box-shadow: 0 0 0 4px var(--sunny), 0 3px 0 rgba(0,0,0,0.15); }
+
+  .sizes { display: flex; gap: 8px; align-items: center; }
+  .size-btn {
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  .size-btn.active { border-color: var(--sunny); background: #FFF6D6; }
+  .size-dot { border-radius: 50%; background: var(--ink); }
+
+  .confetti-piece {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  .save-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(74, 59, 92, 0.82);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 20px;
+  }
+  .save-overlay.show { display: flex; }
+  .save-card {
+    background: #fff;
+    border-radius: 26px;
+    padding: 18px;
+    max-width: min(90vw, 640px);
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    overflow: auto;
+  }
+  .save-card h2 { color: var(--ink); font-size: 20px; text-align: center; }
+  .save-card p { color: var(--ink); font-size: 15px; text-align: center; line-height: 1.4; }
+  .save-card img {
+    max-width: 100%;
+    max-height: 55vh;
+    border-radius: 14px;
+    border: 4px solid var(--sunny);
+    -webkit-user-select: auto;
+    user-select: auto;
+    -webkit-touch-callout: default;
+  }
+  .save-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .btn-download { background: var(--sky); }
+  .btn-close { background: #C9C2D6; color: var(--ink); }
+
+  @media (max-width: 600px) {
+    .tool { width: 52px; height: 52px; font-size: 24px; border-radius: 16px; }
+    .tools { max-width: 72px; }
+    .swatch { width: 38px; height: 38px; }
+    .btn { padding: 8px 10px; font-size: 14px; }
+    .tab { padding: 7px 12px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><span class="wiggle">🎨</span> Magic Drawing Studio</h1>
+  <div class="top-buttons">
+    <button class="btn btn-undo" id="undoBtn">↩️ Oops!</button>
+    <button class="btn btn-clear" id="clearBtn">🧹 Start Over</button>
+    <button class="btn btn-save" id="saveBtn">💾 Save My Art</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="draw" id="tabDraw">🖌️ Free Draw</button>
+  <button class="tab" data-tab="color" id="tabColor">🖼️ Coloring Book</button>
+</nav>
+
+<div class="templates" id="templates"></div>
+
+<main>
+  <div class="tools" id="tools">
+    <button class="tool active" data-tool="brush" title="Brush">🖌️</button>
+    <button class="tool" data-tool="rainbow" title="Rainbow brush">🌈</button>
+    <button class="tool" data-tool="sparkle" title="Sparkles">✨</button>
+    <button class="tool" data-tool="eraser" title="Eraser">🧽</button>
+    <div class="tool-divider"></div>
+    <button class="tool" data-tool="shape-circle" title="Circle">⭕</button>
+    <button class="tool" data-tool="shape-triangle" title="Triangle">🔺</button>
+    <button class="tool" data-tool="shape-rect" title="Rectangle">🟦</button>
+    <button class="tool" data-tool="fill" title="Fill with color">🪣</button>
+    <div class="tool-divider"></div>
+    <button class="tool" data-tool="stamp-star" title="Star stamp">⭐</button>
+    <button class="tool" data-tool="stamp-heart" title="Heart stamp">💖</button>
+    <button class="tool" data-tool="stamp-flower" title="Flower stamp">🌸</button>
+    <button class="tool" data-tool="stamp-butterfly" title="Butterfly stamp">🦋</button>
+    <button class="tool" data-tool="stamp-unicorn" title="Unicorn stamp">🦄</button>
+    <button class="tool" data-tool="stamp-cat" title="Cat stamp">🐱</button>
+  </div>
+
+  <div class="canvas-wrap" id="canvasWrap">
+    <canvas id="canvas"></canvas>
+  </div>
+</main>
+
+<div class="bottom">
+  <div class="colors" id="colors">
+    <button class="swatch active" style="background:#FF4757" data-color="#FF4757"></button>
+    <button class="swatch" style="background:#FF9F43" data-color="#FF9F43"></button>
+    <button class="swatch" style="background:#FFD93D" data-color="#FFD93D"></button>
+    <button class="swatch" style="background:#2ED573" data-color="#2ED573"></button>
+    <button class="swatch" style="background:#1E90FF" data-color="#1E90FF"></button>
+    <button class="swatch" style="background:#9B59B6" data-color="#9B59B6"></button>
+    <button class="swatch" style="background:#FF6FA5" data-color="#FF6FA5"></button>
+    <button class="swatch" style="background:#8B5A2B" data-color="#8B5A2B"></button>
+    <button class="swatch" style="background:#4A3B5C" data-color="#4A3B5C"></button>
+    <button class="swatch" style="background:#FFFFFF; border-color:#eee" data-color="#FFFFFF"></button>
+  </div>
+  <div class="sizes" id="sizes">
+    <button class="size-btn" data-size="6"  style="width:36px;height:36px"><span class="size-dot" style="width:6px;height:6px"></span></button>
+    <button class="size-btn active" data-size="14" style="width:44px;height:44px"><span class="size-dot" style="width:14px;height:14px"></span></button>
+    <button class="size-btn" data-size="28" style="width:52px;height:52px"><span class="size-dot" style="width:24px;height:24px"></span></button>
+  </div>
+</div>
+
+<div class="save-overlay" id="saveOverlay">
+  <div class="save-card">
+    <h2>🌟 Your masterpiece is ready!</h2>
+    <p>On iPad: <b>touch and hold</b> the picture, then tap <b>“Add to Photos”</b> 📱<br>
+    On a computer: click the blue button below 💻</p>
+    <img id="saveImage" alt="Your drawing">
+    <div class="save-actions">
+      <button class="btn btn-download" id="downloadBtn">⬇️ Download</button>
+      <button class="btn btn-close" id="closeSaveBtn">✖️ Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const wrap = document.getElementById('canvasWrap');
+
+  let tool = 'brush';
+  let color = '#FF4757';
+  let size = 14;
+  let drawing = false;
+  let lastX = 0, lastY = 0;
+  let startX = 0, startY = 0;
+  let hue = 0;
+  let undoStack = [];
+  let shapeSnapshot = null;
+  const MAX_UNDO = 25;
+  const INK = '#4A3B5C';
+  const PAPER = '#FFF9F0';
+
+  const STAMPS = {
+    'stamp-star': '⭐', 'stamp-heart': '💖', 'stamp-flower': '🌸',
+    'stamp-butterfly': '🦋', 'stamp-unicorn': '🦄', 'stamp-cat': '🐱'
+  };
+  const SHAPES = { 'shape-circle': 1, 'shape-triangle': 1, 'shape-rect': 1 };
+
+  function resizeCanvas() {
+    const rect = wrap.getBoundingClientRect();
+    if (rect.width < 2 || rect.height < 2) return;
+    const dpr = window.devicePixelRatio || 1;
+    let saved = null;
+    if (canvas.width > 0 && canvas.height > 0) {
+      saved = document.createElement('canvas');
+      saved.width = canvas.width;
+      saved.height = canvas.height;
+      saved.getContext('2d').drawImage(canvas, 0, 0);
+    }
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    if (saved) {
+      ctx.drawImage(saved, 0, 0, saved.width, saved.height, 0, 0, rect.width, rect.height);
+    }
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function snapshot() {
+    try { return ctx.getImageData(0, 0, canvas.width, canvas.height); }
+    catch (e) { return null; }
+  }
+  function restore(img) {
+    if (!img) return;
+    const t = ctx.getTransform();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.putImageData(img, 0, 0);
+    ctx.setTransform(t);
+  }
+
+  function pushUndo() {
+    const img = snapshot();
+    if (!img) return;
+    undoStack.push(img);
+    if (undoStack.length > MAX_UNDO) undoStack.shift();
+  }
+  function undo() {
+    if (!undoStack.length) return;
+    restore(undoStack.pop());
+  }
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const p = e.touches ? e.touches[0] : e;
+    return { x: p.clientX - rect.left, y: p.clientY - rect.top };
+  }
+
+  function start(e) {
+    e.preventDefault();
+    pushUndo();
+    const p = getPos(e);
+    lastX = p.x; lastY = p.y;
+    startX = p.x; startY = p.y;
+
+    if (tool in STAMPS) { stamp(p.x, p.y); return; }
+    if (tool === 'fill') { floodFill(p.x, p.y); return; }
+
+    drawing = true;
+    if (tool in SHAPES) {
+      shapeSnapshot = snapshot();
+      return;
+    }
+    drawLine(p.x, p.y, p.x + 0.01, p.y + 0.01);
+  }
+
+  function move(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const p = getPos(e);
+    if (tool in SHAPES) {
+      restore(shapeSnapshot);
+      drawShape(startX, startY, p.x, p.y);
+      lastX = p.x; lastY = p.y;
+      return;
+    }
+    drawLine(lastX, lastY, p.x, p.y);
+    lastX = p.x; lastY = p.y;
+  }
+
+  function end() {
+    if (drawing && tool in SHAPES) shapeSnapshot = null;
+    drawing = false;
+  }
+
+  function drawLine(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    if (tool === 'eraser') {
+      ctx.strokeStyle = PAPER;
+      ctx.lineWidth = size * 2.5;
+    } else if (tool === 'rainbow') {
+      hue = (hue + 4) % 360;
+      ctx.strokeStyle = 'hsl(' + hue + ', 95%, 60%)';
+      ctx.lineWidth = size;
+    } else if (tool === 'sparkle') {
+      hue = (hue + 7) % 360;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = Math.max(2, size / 3);
+      ctx.stroke();
+      for (let i = 0; i < 3; i++) {
+        const sx = x2 + (Math.random() - 0.5) * size * 2.5;
+        const sy = y2 + (Math.random() - 0.5) * size * 2.5;
+        drawStar(sx, sy, 2 + Math.random() * (size / 4), 'hsl(' + ((hue + i * 40) % 360) + ', 100%, 70%)');
+      }
+      return;
+    } else {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = size;
+    }
+    ctx.stroke();
+  }
+
+  function drawShape(x1, y1, x2, y2) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = size;
+    ctx.beginPath();
+    if (tool === 'shape-circle') {
+      const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2;
+      const rx = Math.abs(x2 - x1) / 2, ry = Math.abs(y2 - y1) / 2;
+      ctx.ellipse(cx, cy, Math.max(rx, 1), Math.max(ry, 1), 0, 0, Math.PI * 2);
+    } else if (tool === 'shape-rect') {
+      const x = Math.min(x1, x2), y = Math.min(y1, y2);
+      ctx.rect(x, y, Math.abs(x2 - x1), Math.abs(y2 - y1));
+    } else if (tool === 'shape-triangle') {
+      const topX = (x1 + x2) / 2;
+      ctx.moveTo(topX, Math.min(y1, y2));
+      ctx.lineTo(Math.min(x1, x2), Math.max(y1, y2));
+      ctx.lineTo(Math.max(x1, x2), Math.max(y1, y2));
+      ctx.closePath();
+    }
+    ctx.stroke();
+  }
+
+  function drawStar(cx, cy, r, fill) {
+    ctx.save();
+    ctx.fillStyle = fill;
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const ang = (Math.PI / 5) * i - Math.PI / 2;
+      const rad = i % 2 === 0 ? r : r / 2.2;
+      ctx.lineTo(cx + Math.cos(ang) * rad, cy + Math.sin(ang) * rad);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function stamp(x, y) {
+    const emoji = STAMPS[tool];
+    const s = size * 2.6;
+    ctx.save();
+    ctx.font = s + 'px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.translate(x, y);
+    ctx.rotate((Math.random() - 0.5) * 0.5);
+    ctx.fillText(emoji, 0, 0);
+    ctx.restore();
+  }
+
+  function hexToRgb(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  }
+
+  function floodFill(cssX, cssY) {
+    const dpr = window.devicePixelRatio || 1;
+    const px = Math.floor(cssX * dpr);
+    const py = Math.floor(cssY * dpr);
+    const w = canvas.width, h = canvas.height;
+    if (px < 0 || py < 0 || px >= w || py >= h) return;
+
+    const img = ctx.getImageData(0, 0, w, h);
+    const data = img.data;
+    const startIdx = (py * w + px) * 4;
+    const tR = data[startIdx], tG = data[startIdx + 1], tB = data[startIdx + 2];
+    const f = hexToRgb(color);
+    const TOL = 60;
+
+    if (Math.abs(tR - f.r) < 8 && Math.abs(tG - f.g) < 8 && Math.abs(tB - f.b) < 8) return;
+
+    function matches(i) {
+      return Math.abs(data[i] - tR) <= TOL &&
+             Math.abs(data[i + 1] - tG) <= TOL &&
+             Math.abs(data[i + 2] - tB) <= TOL;
+    }
+    function paint(i) {
+      data[i] = f.r; data[i + 1] = f.g; data[i + 2] = f.b; data[i + 3] = 255;
+    }
+
+    const stack = [[px, py]];
+    while (stack.length) {
+      const [sx, sy] = stack.pop();
+      let x = sx;
+      while (x >= 0 && matches((sy * w + x) * 4)) x--;
+      x++;
+      let spanUp = false, spanDown = false;
+      while (x < w && matches((sy * w + x) * 4)) {
+        paint((sy * w + x) * 4);
+        if (sy > 0) {
+          const m = matches(((sy - 1) * w + x) * 4);
+          if (m && !spanUp) { stack.push([x, sy - 1]); spanUp = true; }
+          else if (!m) spanUp = false;
+        }
+        if (sy < h - 1) {
+          const m = matches(((sy + 1) * w + x) * 4);
+          if (m && !spanDown) { stack.push([x, sy + 1]); spanDown = true; }
+          else if (!m) spanDown = false;
+        }
+        x++;
+      }
+    }
+
+    const t = ctx.getTransform();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.putImageData(img, 0, 0);
+    ctx.setTransform(t);
+  }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', end);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', move, { passive: false });
+  window.addEventListener('touchend', end);
+
+  document.getElementById('tools').addEventListener('click', function (e) {
+    const btn = e.target.closest('.tool');
+    if (!btn) return;
+    setTool(btn.dataset.tool);
+  });
+
+  function setTool(name) {
+    tool = name;
+    document.querySelectorAll('.tool').forEach(t => t.classList.remove('active'));
+    const btn = document.querySelector('[data-tool="' + name + '"]');
+    if (btn) btn.classList.add('active');
+  }
+
+  document.getElementById('colors').addEventListener('click', function (e) {
+    const sw = e.target.closest('.swatch');
+    if (!sw) return;
+    color = sw.dataset.color;
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    sw.classList.add('active');
+    if (tool === 'eraser') setTool('brush');
+  });
+
+  document.getElementById('sizes').addEventListener('click', function (e) {
+    const btn = e.target.closest('.size-btn');
+    if (!btn) return;
+    size = parseInt(btn.dataset.size, 10);
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+
+  document.getElementById('undoBtn').addEventListener('click', undo);
+
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    pushUndo();
+    const rect = wrap.getBoundingClientRect();
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    document.querySelectorAll('.template-thumb').forEach(t => t.classList.remove('active'));
+    confetti();
+  });
+
+  // ══════════════════════════════════════════
+  //  COLORING BOOK TEMPLATES
+  //  Each template draws line art in a 100x100
+  //  coordinate space; it gets scaled to fit.
+  // ══════════════════════════════════════════
+
+  function tplStroke(c, u, lw) {
+    c.strokeStyle = INK;
+    c.lineWidth = (lw || 2.2) * u.s / 100;
+    c.lineCap = 'round';
+    c.lineJoin = 'round';
+  }
+  function X(u, v) { return u.x + v * u.s / 100; }
+  function Y(u, v) { return u.y + v * u.s / 100; }
+  function R(u, v) { return v * u.s / 100; }
+
+  function ell(c, u, cx, cy, rx, ry, rot) {
+    c.beginPath();
+    c.ellipse(X(u, cx), Y(u, cy), R(u, rx), R(u, ry), rot || 0, 0, Math.PI * 2);
+    c.stroke();
+  }
+  function circ(c, u, cx, cy, r) { ell(c, u, cx, cy, r, r, 0); }
+  function poly(c, u, pts, close) {
+    c.beginPath();
+    c.moveTo(X(u, pts[0][0]), Y(u, pts[0][1]));
+    for (let i = 1; i < pts.length; i++) c.lineTo(X(u, pts[i][0]), Y(u, pts[i][1]));
+    if (close !== false) c.closePath();
+    c.stroke();
+  }
+  function line(c, u, x1, y1, x2, y2) {
+    c.beginPath();
+    c.moveTo(X(u, x1), Y(u, y1));
+    c.lineTo(X(u, x2), Y(u, y2));
+    c.stroke();
+  }
+  function rect(c, u, x, y, w, h) {
+    c.beginPath();
+    c.rect(X(u, x), Y(u, y), R(u, w), R(u, h));
+    c.stroke();
+  }
+  function arc(c, u, cx, cy, r, a1, a2) {
+    c.beginPath();
+    c.arc(X(u, cx), Y(u, cy), R(u, r), a1, a2);
+    c.stroke();
+  }
+
+  const TEMPLATES = [
+    { name: 'Butterfly', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 32, 42, 16, 13, -0.45);
+      ell(c, u, 68, 42, 16, 13, 0.45);
+      ell(c, u, 36, 66, 12, 10, 0.35);
+      ell(c, u, 64, 66, 12, 10, -0.35);
+      ell(c, u, 50, 55, 4.5, 17, 0);
+      circ(c, u, 50, 33, 5.5);
+      line(c, u, 47, 29, 41, 19); circ(c, u, 40, 17, 2);
+      line(c, u, 53, 29, 59, 19); circ(c, u, 60, 17, 2);
+      circ(c, u, 31, 41, 4); circ(c, u, 69, 41, 4);
+      circ(c, u, 36, 66, 3); circ(c, u, 64, 66, 3);
+    }},
+    { name: 'Flower', draw: function (c, u) {
+      tplStroke(c, u);
+      const cx = 50, cy = 36, pr = 15;
+      for (let i = 0; i < 6; i++) {
+        const a = i * Math.PI / 3 - Math.PI / 2;
+        ell(c, u, cx + Math.cos(a) * pr, cy + Math.sin(a) * pr, 8, 12, a + Math.PI / 2);
+      }
+      circ(c, u, cx, cy, 9);
+      line(c, u, 50, 60, 50, 90);
+      ell(c, u, 41, 74, 8, 4, 0.7);
+      ell(c, u, 59, 80, 8, 4, -0.7);
+    }},
+    { name: 'Fish', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 44, 52, 23, 14, 0);
+      poly(c, u, [[65, 52], [82, 39], [82, 65]]);
+      circ(c, u, 33, 48, 3.5);
+      poly(c, u, [[42, 39], [49, 27], [56, 40]]);
+      arc(c, u, 40, 55, 7, -0.6, 0.9);
+      circ(c, u, 80, 22, 4); circ(c, u, 88, 14, 3); circ(c, u, 74, 12, 2.5);
+    }},
+    { name: 'House', draw: function (c, u) {
+      tplStroke(c, u);
+      rect(c, u, 28, 50, 44, 36);
+      poly(c, u, [[23, 50], [50, 26], [77, 50]]);
+      rect(c, u, 44, 64, 12, 22);
+      rect(c, u, 32, 56, 10, 10);
+      line(c, u, 37, 56, 37, 66); line(c, u, 32, 61, 42, 61);
+      rect(c, u, 58, 56, 10, 10);
+      line(c, u, 63, 56, 63, 66); line(c, u, 58, 61, 68, 61);
+      circ(c, u, 86, 15, 7);
+      for (let i = 0; i < 8; i++) {
+        const a = i * Math.PI / 4;
+        line(c, u, 86 + Math.cos(a) * 9.5, 15 + Math.sin(a) * 9.5, 86 + Math.cos(a) * 13, 15 + Math.sin(a) * 13);
+      }
+    }},
+    { name: 'Rocket', draw: function (c, u) {
+      tplStroke(c, u);
+      poly(c, u, [[40, 32], [50, 10], [60, 32]]);
+      rect(c, u, 40, 32, 20, 40);
+      circ(c, u, 50, 46, 6.5);
+      poly(c, u, [[40, 58], [27, 78], [40, 72]]);
+      poly(c, u, [[60, 58], [73, 78], [60, 72]]);
+      poly(c, u, [[44, 72], [50, 90], [56, 72]]);
+    }},
+    { name: 'Cat', draw: function (c, u) {
+      tplStroke(c, u);
+      circ(c, u, 50, 58, 26);
+      poly(c, u, [[31, 42], [34, 16], [48, 34]]);
+      poly(c, u, [[69, 42], [66, 16], [52, 34]]);
+      circ(c, u, 41, 54, 4); circ(c, u, 59, 54, 4);
+      poly(c, u, [[46.5, 63], [53.5, 63], [50, 67.5]]);
+      arc(c, u, 45.5, 70, 4.5, 0.15, Math.PI - 0.6);
+      arc(c, u, 54.5, 70, 4.5, 0.6 - Math.PI + Math.PI, Math.PI - 0.15);
+      line(c, u, 24, 60, 10, 57); line(c, u, 24, 66, 10, 68);
+      line(c, u, 76, 60, 90, 57); line(c, u, 76, 66, 90, 68);
+    }},
+    { name: 'Ice cream', draw: function (c, u) {
+      tplStroke(c, u);
+      poly(c, u, [[36, 52], [64, 52], [50, 92]]);
+      circ(c, u, 41, 44, 11);
+      circ(c, u, 59, 44, 11);
+      circ(c, u, 50, 30, 11);
+      circ(c, u, 50, 16, 4);
+      line(c, u, 50, 12, 53, 7);
+    }},
+    { name: 'Turtle', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 50, 52, 26, 18, 0);
+      arc(c, u, 50, 52, 26, Math.PI, 0);
+      circ(c, u, 82, 46, 8);
+      circ(c, u, 84, 44, 1.6);
+      ell(c, u, 30, 70, 6, 5, 0.5);
+      ell(c, u, 66, 70, 6, 5, -0.5);
+      line(c, u, 38, 44, 62, 44);
+      line(c, u, 34, 56, 66, 56);
+      line(c, u, 44, 36, 44, 64);
+      line(c, u, 56, 36, 56, 64);
+      poly(c, u, [[24, 50], [16, 46], [24, 55]]);
+    }},
+    { name: 'Cyclops monster', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 50, 58, 25, 28, 0);                 // body
+      poly(c, u, [[32, 36], [24, 16], [40, 30]]);   // left horn
+      poly(c, u, [[68, 36], [76, 16], [60, 30]]);   // right horn
+      circ(c, u, 50, 44, 10);                       // big eye
+      circ(c, u, 50, 44, 4);                        // pupil
+      ell(c, u, 50, 70, 11, 6, 0);                  // mouth
+      rect(c, u, 44.5, 64.5, 4, 4.5);               // tooth
+      rect(c, u, 51.5, 64.5, 4, 4.5);               // tooth
+      ell(c, u, 24, 60, 5, 10, 0.35);               // arms
+      ell(c, u, 76, 60, 5, 10, -0.35);
+      ell(c, u, 40, 88, 6.5, 4, 0);                 // feet
+      ell(c, u, 60, 88, 6.5, 4, 0);
+    }},
+    { name: 'Three-eyed blob', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 50, 62, 28, 24, 0);                 // blobby body
+      line(c, u, 42, 40, 35, 22); circ(c, u, 34, 19, 3);  // antennae
+      line(c, u, 58, 40, 65, 22); circ(c, u, 66, 19, 3);
+      circ(c, u, 38, 54, 5); circ(c, u, 38, 54, 2);       // three eyes
+      circ(c, u, 50, 50, 6.5); circ(c, u, 50, 50, 2.5);
+      circ(c, u, 62, 54, 5); circ(c, u, 62, 54, 2);
+      arc(c, u, 50, 66, 12, 0.35, Math.PI - 0.35);        // big smile
+      circ(c, u, 33, 72, 3); circ(c, u, 67, 70, 2.5);     // spots
+      circ(c, u, 50, 80, 3);
+    }},
+    { name: 'Zigzag monster', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 50, 56, 24, 29, 0);                 // tall fluffy body
+      poly(c, u, [[38, 30], [34, 12], [46, 27]]);   // little horns
+      poly(c, u, [[62, 30], [66, 12], [54, 27]]);
+      circ(c, u, 41, 46, 7); circ(c, u, 41, 46, 3); // mismatched eyes
+      circ(c, u, 60, 48, 4.5); circ(c, u, 60, 48, 2);
+      poly(c, u, [[35, 68], [41, 73], [47, 66], [53, 73], [59, 66], [65, 71]], false); // zigzag mouth
+      ell(c, u, 39, 88, 6.5, 4, 0);                 // feet
+      ell(c, u, 61, 88, 6.5, 4, 0);
+    }},
+    { name: 'Eye-stalk monster', draw: function (c, u) {
+      tplStroke(c, u);
+      ell(c, u, 50, 66, 26, 19, 0);                 // wide squishy body
+      line(c, u, 42, 49, 35, 28); circ(c, u, 34, 24, 5.5); circ(c, u, 34, 24, 2.2); // eye stalks
+      line(c, u, 58, 49, 65, 28); circ(c, u, 66, 24, 5.5); circ(c, u, 66, 24, 2.2);
+      arc(c, u, 50, 66, 13, 0.3, Math.PI - 0.3);    // grin
+      rect(c, u, 44, 71, 4, 4);                     // teeth in the grin
+      rect(c, u, 52, 71, 4, 4);
+      circ(c, u, 31, 62, 2.5); circ(c, u, 69, 60, 3); // spots
+      ell(c, u, 38, 86, 6, 3.5, 0);                 // feet
+      ell(c, u, 62, 86, 6, 3.5, 0);
+    }}
+  ];
+
+  // Draw a template scaled & centered on the main canvas
+  function loadTemplate(index) {
+    pushUndo();
+    const rect = wrap.getBoundingClientRect();
+    const w = rect.width, h = rect.height;
+    ctx.fillStyle = PAPER;
+    ctx.fillRect(0, 0, w, h);
+    const s = Math.min(w, h) * 0.9;
+    const u = { x: (w - s) / 2, y: (h - s) / 2, s: s };
+    TEMPLATES[index].draw(ctx, u);
+    setTool('fill'); // hand the child the paint bucket right away
+  }
+
+  // Build thumbnail strip
+  const strip = document.getElementById('templates');
+  TEMPLATES.forEach(function (tpl, i) {
+    const btn = document.createElement('button');
+    btn.className = 'template-thumb';
+    btn.title = tpl.name;
+    const tc = document.createElement('canvas');
+    const TS = 72, dpr = window.devicePixelRatio || 1;
+    tc.width = TS * dpr; tc.height = TS * dpr;
+    tc.style.width = TS + 'px'; tc.style.height = TS + 'px';
+    const tctx = tc.getContext('2d');
+    tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    tctx.fillStyle = PAPER;
+    tctx.fillRect(0, 0, TS, TS);
+    tpl.draw(tctx, { x: TS * 0.05, y: TS * 0.05, s: TS * 0.9 });
+    btn.appendChild(tc);
+    btn.addEventListener('click', function () {
+      loadTemplate(i);
+      document.querySelectorAll('.template-thumb').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+    });
+    strip.appendChild(btn);
+  });
+
+  // ── Tabs ──
+  const tabDraw = document.getElementById('tabDraw');
+  const tabColor = document.getElementById('tabColor');
+  function switchTab(which) {
+    tabDraw.classList.toggle('active', which === 'draw');
+    tabColor.classList.toggle('active', which === 'color');
+    strip.classList.toggle('show', which === 'color');
+    // canvas area changed height -> re-fit (drawing is preserved)
+    requestAnimationFrame(resizeCanvas);
+  }
+  tabDraw.addEventListener('click', function () { switchTab('draw'); });
+  tabColor.addEventListener('click', function () { switchTab('color'); });
+
+  // ── Save overlay ──
+  const overlay = document.getElementById('saveOverlay');
+  const saveImage = document.getElementById('saveImage');
+  let lastDataURL = '';
+
+  document.getElementById('saveBtn').addEventListener('click', function () {
+    lastDataURL = canvas.toDataURL('image/png');
+    saveImage.src = lastDataURL;
+    overlay.classList.add('show');
+    confetti();
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', function () {
+    const link = document.createElement('a');
+    link.download = 'my-masterpiece.png';
+    link.href = lastDataURL;
+    link.click();
+  });
+
+  document.getElementById('closeSaveBtn').addEventListener('click', function () {
+    overlay.classList.remove('show');
+  });
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) overlay.classList.remove('show');
+  });
+
+  function confetti() {
+    const colors = ['#FF6FA5', '#FFD93D', '#6EC6FF', '#9B7EDE', '#6FE3B4', '#FF9F43'];
+    for (let i = 0; i < 40; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.top = '-20px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+      const fall = 1200 + Math.random() * 1500;
+      const drift = (Math.random() - 0.5) * 200;
+      const spin = Math.random() * 720 - 360;
+      piece.animate([
+        { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+        { transform: 'translate(' + drift + 'px, 105vh) rotate(' + spin + 'deg)', opacity: 0.8 }
+      ], { duration: fall, easing: 'ease-in' });
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), fall);
+    }
+  }
+})();
+</script>
+</body>
+</html>
