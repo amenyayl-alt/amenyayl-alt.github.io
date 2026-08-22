@@ -46,14 +46,37 @@
   .hero .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
   .hero .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
 
-  /* featured */
-  .featured{max-width:520px;margin:0 auto 20px;border:1px solid rgba(255,217,158,.22);border-radius:14px;padding:24px 26px;text-align:center;background:rgba(255,255,255,.02);transition:transform .3s,border-color .3s;}
-  .featured:hover{transform:translateY(-3px);border-color:rgba(255,217,158,.45);}
-  .featured .f-tag{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-  .featured h3{font-weight:300;font-size:24px;color:#f6f0e2;margin-bottom:8px;}
-  .featured p{font-size:14px;color:var(--muted);margin-bottom:16px;}
-  .featured .open{display:inline-block;padding:11px 26px;border-radius:40px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,217,158,.4);color:var(--gold-bright);transition:all .3s;}
-  .featured .open:hover{background:rgba(232,179,90,.12);box-shadow:0 0 22px rgba(232,179,90,.3);}
+  /* featured release */
+  .featured{
+    position:relative;border-radius:20px;overflow:hidden;
+    border:1px solid rgba(255,217,158,.18);
+    background:
+      radial-gradient(120% 150% at 90% 0%, rgba(110,70,20,.4), transparent 60%),
+      linear-gradient(160deg,#14100a,#0a0806);
+    padding:52px 40px;margin:0 auto 20px;
+    display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center;
+    box-shadow:0 24px 70px -28px rgba(200,140,40,.4);
+  }
+  .featured .cover{
+    aspect-ratio:1/1;border-radius:14px;overflow:hidden;
+    background:radial-gradient(80% 80% at 50% 40%, #6a4a1c, #241505);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-bright);
+    border:1px solid rgba(255,217,158,.25);
+  }
+  .featured .cover svg{width:60px;height:60px;}
+  .featured .badge{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:12px;}
+  .featured h3{font-weight:300;font-size:clamp(24px,3vw,34px);margin-bottom:14px;color:#f6efe0;}
+  .featured p{color:#c9bfa8;max-width:520px;margin-bottom:26px;}
+  .featured .cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:14px 30px;border-radius:40px;
+    font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    border:1px solid rgba(255,217,158,.4);color:var(--gold-bright);
+    transition:all .3s ease;
+  }
+  .btn:hover{background:rgba(232,179,90,.12);box-shadow:0 0 24px rgba(232,179,90,.25);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 0 30px rgba(232,179,90,.55);}
 
   /* sections */
   .block{border-top:1px solid rgba(255,255,255,.06);padding:44px 0;}
@@ -84,7 +107,13 @@
   .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
   .foot-nav a:hover{color:var(--gold-bright);}
 
-  @media(max-width:640px){.topnav nav{display:none;}.acc .song{flex-direction:column;align-items:flex-start;gap:4px;}}
+  @media(max-width:640px){
+    .topnav nav{display:none;}
+    .featured{grid-template-columns:1fr;text-align:center;padding:36px 26px;}
+    .featured .cover{max-width:200px;margin:0 auto;}
+    .featured .cta{justify-content:center;}
+    .acc .song{flex-direction:column;align-items:flex-start;gap:4px;}
+  }
 </style>
 </head>
 <body>
@@ -113,13 +142,24 @@
       <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
     </header>
 
-    <!-- FEATURED -->
-    <a class="featured" href="/creative/music/songs/uleteli-sny">
-      <div class="f-tag">Featured Release</div>
-      <h3>Улетели сны</h3>
-      <p>A luminous, melancholic song about release, memory, and love that remains even after flight.</p>
-      <span class="open">Listen &amp; Download</span>
-    </a>
+    <!-- FEATURED RELEASE -->
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="cover" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M20 4 C23 14 26 17 36 20 C26 23 23 26 20 36 C17 26 14 23 4 20 C14 17 17 14 20 4 Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="badge">Featured Release</div>
+        <h3 id="featured-title">Улетели сны</h3>
+        <p>A luminous, melancholic song about release, memory, and love that remains even after flight.</p>
+        <div class="cta">
+          <a class="btn solid" href="/creative/music/songs/uleteli-sny">Listen</a>
+          <a class="btn" href="/creative/music/songs/uleteli-sny#lyrics">View Lyrics</a>
+          <a class="btn" href="/creative/music/instrumentals">Download Instrumental</a>
+        </div>
+      </div>
+    </section>
 
     <!-- CATEGORIES -->
     <section class="block">

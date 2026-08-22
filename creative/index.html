@@ -94,28 +94,6 @@
 
   .section{padding:70px 0;}
 
-  /* ---------- FEATURED CARD ---------- */
-  .featured{
-    position:relative;border-radius:20px;overflow:hidden;
-    border:1px solid rgba(255,217,158,.18);
-    background:
-      radial-gradient(120% 150% at 90% 0%, rgba(110,70,20,.4), transparent 60%),
-      linear-gradient(160deg,#14100a,#0a0806);
-    padding:52px 40px;display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center;
-    box-shadow:0 24px 70px -28px rgba(200,140,40,.4);
-  }
-  .featured .cover{
-    aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:
-      radial-gradient(80% 80% at 50% 40%, #6a4a1c, #241505);
-    display:flex;align-items:center;justify-content:center;color:var(--gold-bright);
-    border:1px solid rgba(255,217,158,.25);
-  }
-  .featured .cover svg{width:60px;height:60px;}
-  .featured .badge{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:12px;}
-  .featured h3{font-weight:300;font-size:clamp(24px,3vw,34px);margin-bottom:14px;color:#f6efe0;}
-  .featured p{color:#c9bfa8;max-width:520px;margin-bottom:26px;}
-  .featured .cta{display:flex;gap:14px;flex-wrap:wrap;}
-
   /* ---------- THREE PORTALS ---------- */
   .portals{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;}
   .pcard{
@@ -217,9 +195,7 @@
   .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
 
   @media(max-width:760px){
-    .featured{grid-template-columns:1fr;text-align:center;padding:36px 26px;}
-    .featured .cover{max-width:200px;margin:0 auto;}
-    .featured .cta,.hero .ctas{justify-content:center;}
+    .hero .ctas{justify-content:center;}
     .world{grid-template-columns:1fr;}
     .topnav nav{display:none;}
   }
@@ -252,27 +228,6 @@
       <a class="btn" href="/creative/stories">Enter the Worlds</a>
     </div>
   </header>
-
-  <!-- BLOCK 2 — FEATURED -->
-  <section class="section wrap">
-    <div class="featured">
-      <div class="cover">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 4 C23 14 26 17 36 20 C26 23 23 26 20 36 C17 26 14 23 4 20 C14 17 17 14 20 4 Z"/>
-        </svg>
-      </div>
-      <div>
-        <div class="badge">Featured Release</div>
-        <h3>Улетели сны</h3>
-        <p>A luminous, melancholic song about release, memory, and love that remains even after flight.</p>
-        <div class="cta">
-          <a class="btn solid" href="/creative/music/songs/uleteli-sny">Listen</a>
-          <a class="btn" href="/creative/music/songs/uleteli-sny#lyrics">View Lyrics</a>
-          <a class="btn" href="/creative/music/instrumentals">Download Instrumental</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- BLOCK 3 — THREE PORTALS -->
   <section class="section wrap">
