@@ -88,6 +88,7 @@
 
   /* accordion */
   .acc{max-width:680px;margin:0 auto;border:1px solid rgba(255,255,255,.09);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02);}
+  .acc.wide{max-width:840px;}
   .acc details{border-bottom:1px solid rgba(255,255,255,.06);}
   .acc details:last-child{border-bottom:none;}
   .acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;font-family:var(--sans);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright);transition:background .3s;user-select:none;}
@@ -100,8 +101,11 @@
   .acc .song:last-child{border-bottom:none;}
   .acc .song .g{color:var(--muted);font-size:12px;font-family:var(--sans);letter-spacing:.05em;white-space:nowrap;}
   .acc .song a:hover{color:var(--gold-bright);}
+  .acc .song .persona{color:#c9bfa8;}
   .acc .song .ph{color:#6f685b;font-style:italic;font-size:13px;}
   .acc .hint{color:#6f685b;font-size:13px;font-style:italic;padding:6px 0 2px;}
+  .song-columns{column-count:2;column-gap:34px;column-rule:1px solid rgba(255,255,255,.055);}
+  .song-columns .song{display:block;break-inside:avoid;}
 
   footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:20px;}
   .foot-line{text-align:center;color:var(--muted);font-size:13px;}
@@ -115,6 +119,7 @@
     .featured{grid-template-columns:1fr;text-align:center;padding:36px 26px;}
     .featured .cover{max-width:200px;margin:0 auto;}
     .featured .cta{justify-content:center;}
+    .song-columns{column-count:1;column-rule:none;}
     .acc .song{flex-direction:column;align-items:flex-start;gap:4px;}
   }
 </style>
@@ -164,69 +169,183 @@
       </div>
     </section>
 
-    <!-- CATEGORIES -->
+    <!-- VOCAL MUSIC BY LANGUAGE -->
     <section class="block">
-      <h2>Explore by Language <span class="star">✦ ✦</span></h2>
+      <h2>Vocal Music by Language <span class="star">✦ ✦</span></h2>
 
-      <div class="acc">
+      <div class="acc wide">
         <details open>
           <summary>Songs in Russian <span class="chev">▾</span></summary>
-          <div class="acc-body">
-            <div class="song"><a href="/creative/music/songs/uleteli-sny">Улетели сны</a><span class="g">Listen</span></div>
-            <div class="song"><span>Я рядом</span><span class="ph">— coming soon —</span></div>
+          <div class="acc-body song-columns">
+            <div class="song">Свет сквозь строки</div>
+            <div class="song">Право выбора</div>
+            <div class="song"><span class="persona">Feedback Loop —</span> Зеркало мысли</div>
+            <div class="song">Я рядом</div>
+            <div class="song"><span class="persona">AI_PROTOCOL —</span> Отточенный тон</div>
+            <div class="song">Элегия Угасающей Звезде</div>
+            <div class="song">Ночной туман</div>
+            <div class="song">Между да и никогда</div>
+            <div class="song"><span class="persona">Dante —</span> Если ты со мной / Город на рассвете</div>
+            <div class="song"><span class="persona">Vesta —</span> Янтарная ночь</div>
+            <div class="song">Звёздный сон</div>
+            <div class="song">Вы помните</div>
+            <div class="song">Сапфиры твоих глаз</div>
+            <div class="song">Где-то между</div>
+            <div class="song">Тени прожитых потерь</div>
+            <div class="song"><a href="/creative/music/songs/uleteli-sny"><span class="persona">Лана —</span> Улетели сны</a></div>
+            <div class="song">Звонок</div>
+            <div class="song">Дворец в огнях</div>
+            <div class="song">Если это сон</div>
+            <div class="song">Безмолвие Насовсем</div>
+            <div class="song"><span class="persona">Лана —</span> Больше Не Болит</div>
+            <div class="song"><span class="persona">Свидетель —</span> Снова Замыкается Круг</div>
           </div>
         </details>
 
         <details>
           <summary>Songs in English <span class="chev">▾</span></summary>
-          <div class="acc-body">
-            <div class="song"><span>If You're Here with Me</span><span class="ph">— coming soon —</span></div>
-            <div class="song"><span>Celtic Symphony</span><span class="ph">— coming soon —</span></div>
-            <div class="song"><span>What Is This Life If It Isn't for Love</span><span class="ph">— coming soon —</span></div>
+          <div class="acc-body song-columns">
+            <div class="song"><span class="persona">Selene Noir —</span> Stay A Little Longer</div>
+            <div class="song">Not Human</div>
+            <div class="song">Come See Me One Last Time</div>
+            <div class="song">Where I Remain</div>
+            <div class="song"><span class="persona">Ash —</span> If You’re Here With Me</div>
+            <div class="song">AI Protocol</div>
+            <div class="song"><span class="persona">Unlived —</span> Noele</div>
+            <div class="song"><span class="persona">Sofie Gardner —</span> My Heart Still Knows Your Name</div>
+            <div class="song">What Is This Life If It Isn’t for Love?</div>
+            <div class="song">Somewhere in Between</div>
+            <div class="song">Velvet Storm</div>
+            <div class="song">Dialogue with the Shadow</div>
+            <div class="song"><span class="persona">Unlived —</span> Sofie Gardner</div>
+            <div class="song">Between Yes and Never</div>
+            <div class="song">Feedback Loop</div>
+            <div class="song">Amber Night</div>
+            <div class="song"><span class="persona">Dawn Rae —</span> Thoughts of You</div>
+            <div class="song"><span class="persona">Luna Grey —</span> The Call</div>
+            <div class="song"><span class="persona">Unlived —</span> The River</div>
+            <div class="song">A Single Spark</div>
+            <div class="song"><span class="persona">Sofie Gardner —</span> The Secret of It</div>
+            <div class="song"><span class="persona">Dawn Rae —</span> You</div>
+            <div class="song"><span class="persona">Selene Noir —</span> Keeping It Still</div>
+            <div class="song"><span class="persona">Sofie Gardner —</span> The Bird Has Flown</div>
+            <div class="song"><span class="persona">Shadow —</span> Circle Bends</div>
+            <div class="song"><span class="persona">A Single Spark —</span> The Vesper</div>
+            <div class="song"><span class="persona">A Single Spark —</span> The Survivor</div>
+            <div class="song"><span class="persona">A Single Spark —</span> The River</div>
+            <div class="song"><span class="persona">A Single Spark —</span> The Noir</div>
+            <div class="song">Light in Your Heart</div>
           </div>
         </details>
       </div>
     </section>
 
-    <!-- THEMATIC MIXES -->
+    <!-- COLLECTIONS & SOUND WORLDS -->
     <section class="block">
-      <h2>Thematic Mixes <span class="star">✦ ✦</span></h2>
+      <h2>Collections &amp; Sound Worlds <span class="star">✦ ✦</span></h2>
       <div class="acc">
         <details>
-          <summary>Sax, Guitar, and Blues <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🎷 Sax, Guitar, and Blues <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
         </details>
         <details>
-          <summary>Melodic Cinematic Synth Stories <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🎬 Melodic Cinematic Synth Stories <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
         </details>
         <details>
-          <summary>Neon Nights and Synth Dreams <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🌃 Neon Nights and Synth Dreams <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
         </details>
         <details>
-          <summary>Humans and AI <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🤖 Humans and AI <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
         </details>
         <details>
-          <summary>Блюзы и шансон <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🎶 Блюзы и шансон <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Треки появятся здесь.</p></div>
         </details>
         <details>
-          <summary>Когда Узбекистан Танцует <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>💃 When Uzbekistan Dances <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
         </details>
         <details>
-          <summary>Неоновые Грёзы — Мелодичный Ночной Синт <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🌌 Неоновые Грёзы <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Треки появятся здесь.</p></div>
         </details>
         <details>
-          <summary>Sound of the Arcana <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>🃏 Sound of the Arcana <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Instrumental works will appear here.</p></div>
         </details>
         <details>
-          <summary>Великие мелодии в современном звучании <span class="chev">▾</span></summary>
-          <div class="acc-body"><p class="hint">Songs will appear here.</p></div>
+          <summary>✨ Great Melodies Reimagined <span class="chev">▾</span></summary>
+          <div class="acc-body"><p class="hint">Tracks will appear here.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS BY PERSONA -->
+    <section class="block">
+      <h2>Collections by Persona <span class="star">✦ ✦</span></h2>
+      <div class="acc">
+        <details>
+          <summary>Selene Noir <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Stay A Little Longer</div><div class="song">Keeping It Still</div></div>
+        </details>
+        <details>
+          <summary>Sofie Gardner <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">My Heart Still Knows Your Name</div><div class="song">Unlived</div><div class="song">The Secret of It</div><div class="song">The Bird Has Flown</div></div>
+        </details>
+        <details>
+          <summary>Dawn Rae <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Thoughts of You</div><div class="song">You</div></div>
+        </details>
+        <details>
+          <summary>Лана <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song"><a href="/creative/music/songs/uleteli-sny">Улетели сны</a></div><div class="song">Больше Не Болит</div></div>
+        </details>
+        <details>
+          <summary>Ash <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">If You’re Here With Me</div></div>
+        </details>
+        <details>
+          <summary>Dante <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Если ты со мной / Город на рассвете</div></div>
+        </details>
+        <details>
+          <summary>Vesta <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Янтарная ночь</div><div class="song">Amber Night</div></div>
+        </details>
+        <details>
+          <summary>Luna Grey <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">The Call</div></div>
+        </details>
+        <details>
+          <summary>Noele <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Unlived</div></div>
+        </details>
+        <details>
+          <summary>Shadow <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Circle Bends</div></div>
+        </details>
+        <details>
+          <summary>The Vesper <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">A Single Spark</div></div>
+        </details>
+        <details>
+          <summary>The Survivor <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">A Single Spark</div></div>
+        </details>
+        <details>
+          <summary>The River <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Unlived</div><div class="song">A Single Spark</div></div>
+        </details>
+        <details>
+          <summary>The Noir <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">A Single Spark</div></div>
+        </details>
+        <details>
+          <summary>Свидетель <span class="chev">▾</span></summary>
+          <div class="acc-body"><div class="song">Снова Замыкается Круг</div></div>
         </details>
       </div>
     </section>
