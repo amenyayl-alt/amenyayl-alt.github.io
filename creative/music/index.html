@@ -18,11 +18,16 @@
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--bg);color:var(--text);font-family:var(--serif);line-height:1.7;
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
     background-image:
-      radial-gradient(1100px 500px at 50% -10%, rgba(70,45,20,.30), transparent 60%),
-      radial-gradient(900px 500px at 10% 80%, rgba(40,25,60,.22), transparent 55%);
-    background-attachment:fixed;-webkit-font-smoothing:antialiased;
+      radial-gradient(ellipse at center, rgba(0,0,0,.60) 0%, rgba(0,0,0,.34) 46%, rgba(0,0,0,.12) 70%, rgba(0,0,0,.04) 90%),
+      url('/creative/music/music_bg_image.png');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;text-decoration:none;}
   .wrap{max-width:940px;margin:0 auto;padding:0 24px;}
