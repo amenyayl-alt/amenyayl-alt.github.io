@@ -107,7 +107,10 @@
   .acc .song:last-child{border-bottom:none;}
   .acc .song .g{color:var(--muted);font-size:12px;font-family:var(--sans);letter-spacing:.05em;white-space:nowrap;}
   .acc .song a:hover{color:var(--gold-bright);}
+  .acc .song a.is-coming-soon{color:#746f65;opacity:.62;}
+  .acc .song a.is-coming-soon:hover{color:#aaa293;opacity:.82;}
   .acc .song .persona{color:#c9bfa8;}
+  .acc .song a.is-coming-soon .persona{color:#746f65;}
   .acc .song .ph{color:#6f685b;font-style:italic;font-size:13px;}
   .acc .hint{color:#6f685b;font-size:13px;font-style:italic;padding:6px 0 2px;}
   .song-columns{column-count:2;column-gap:34px;column-rule:1px solid rgba(255,255,255,.055);}
@@ -583,6 +586,9 @@
       if (href.startsWith("https://www.youtube.com/")) {
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+      } else {
+        link.classList.add("is-coming-soon");
+        link.setAttribute("aria-label", `${title} — coming soon`);
       }
       while (song.firstChild) link.appendChild(song.firstChild);
       song.appendChild(link);
