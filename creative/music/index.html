@@ -455,5 +455,80 @@
     </div>
   </footer>
 
+  <script>
+    const trackLinks = new Map([
+      // Published videos from the first catalog batch.
+      ["What Is This Life If It Isn’t for Love?", "https://www.youtube.com/watch?v=CBY4G0fx-dQ"],
+      ["Янтарная ночь — Vesta", "https://www.youtube.com/watch?v=9zMiu_gSie4"],
+      ["Vesta::Янтарная ночь", "https://www.youtube.com/watch?v=9zMiu_gSie4"],
+      ["Звёздный сон — Лея", "https://www.youtube.com/watch?v=foEuR9GtxN8"],
+      ["Лея::Звёздный сон", "https://www.youtube.com/watch?v=foEuR9GtxN8"],
+      ["Somewhere in Between — Sofie Gardner", "https://www.youtube.com/watch?v=SpI9nUZQ9YA"],
+      ["Sofie Gardner::Somewhere in Between", "https://www.youtube.com/watch?v=SpI9nUZQ9YA"],
+      ["Velvet Storm", "https://www.youtube.com/watch?v=gBmKqiZTR_0"],
+      ["Dialogue with the Shadow", "https://www.youtube.com/watch?v=1xu9yT_4Q8A"],
+      ["Вы помните — Изгнанник", "https://www.youtube.com/watch?v=fuBRxoTM2oo"],
+      ["Изгнанник::Вы помните", "https://www.youtube.com/watch?v=fuBRxoTM2oo"],
+      ["Unlived — Sofie Gardner", "https://www.youtube.com/watch?v=x7VeFp6gzNk"],
+      ["Sofie Gardner::Unlived", "https://www.youtube.com/watch?v=x7VeFp6gzNk"],
+      ["Between Yes and Never — Luna Grey", "https://www.youtube.com/watch?v=Omhg4y9sVw8"],
+      ["Luna Grey::Between Yes and Never", "https://www.youtube.com/watch?v=Omhg4y9sVw8"],
+      ["Feedback Loop", "https://www.youtube.com/watch?v=IpGdo2HMQQ4"],
+      ["Сапфиры твоих глаз — Лана", "https://www.youtube.com/watch?v=kdof3P_UsEI"],
+      ["Лана::Сапфиры твоих глаз", "https://www.youtube.com/watch?v=kdof3P_UsEI"],
+
+      // Future song homes; the site's universal Coming Soon page appears until publication.
+      ["Stay A Little Longer — Selene Noir", "/creative/music/songs/stay-a-little-longer"],
+      ["Selene Noir::Stay A Little Longer", "/creative/music/songs/stay-a-little-longer"],
+      ["Свет сквозь строки", "/creative/music/songs/svet-skvoz-stroki"],
+      ["Not Human", "/creative/music/songs/not-human"],
+      ["Право выбора", "/creative/music/songs/pravo-vybora"],
+      ["Come See Me One Last Time", "/creative/music/songs/come-see-me-one-last-time"],
+      ["Where I Remain", "/creative/music/songs/where-i-remain"],
+      ["If You’re Here With Me — Ash", "/creative/music/songs/if-youre-here-with-me"],
+      ["Ash::If You’re Here With Me", "/creative/music/songs/if-youre-here-with-me"],
+      ["Зеркало мысли", "/creative/music/songs/zerkalo-mysli"],
+      ["Duet of Inward Wings", "/creative/music/songs/duet-of-inward-wings"],
+      ["How Much Is the Fish? — Celtic Symphony", "/creative/music/songs/celtic-symphony"],
+      ["Я рядом", "/creative/music/songs/ya-ryadom"],
+      ["AI Protocol", "/creative/music/songs/ai-protocol"],
+      ["AI_PROTOCOL — Отточенный тон", "/creative/music/songs/ai-protocol-ottochennyy-ton"],
+      ["Unlived — Noele", "/creative/music/songs/unlived-noele"],
+      ["Noele::Unlived", "/creative/music/songs/unlived-noele"],
+      ["Элегия Угасающей Звезде", "/creative/music/songs/elegiya-ugasayushchey-zvezde"],
+      ["Ночной туман — Изгнанник", "/creative/music/songs/nochnoy-tuman"],
+      ["Изгнанник::Ночной туман", "/creative/music/songs/nochnoy-tuman"],
+      ["Между да и никогда — Vesta", "/creative/music/songs/mezhdu-da-i-nikogda"],
+      ["Vesta::Между да и никогда", "/creative/music/songs/mezhdu-da-i-nikogda"],
+      ["My Heart Still Knows Your Name — Sofie Gardner", "/creative/music/songs/my-heart-still-knows-your-name"],
+      ["Sofie Gardner::My Heart Still Knows Your Name", "/creative/music/songs/my-heart-still-knows-your-name"],
+      ["Если ты со мной / Город на рассвете — Dante", "/creative/music/songs/esli-ty-so-mnoy"],
+      ["Dante::Если ты со мной / Город на рассвете", "/creative/music/songs/esli-ty-so-mnoy"]
+    ]);
+
+    document.querySelectorAll(".acc .song").forEach((song) => {
+      if (song.querySelector("a")) return;
+
+      const title = song.textContent.replace(/\s+/g, " ").trim();
+      const details = song.closest("details");
+      const summary = details?.querySelector("summary");
+      const section = summary
+        ? summary.textContent.replace("▾", "").replace(/\s+/g, " ").trim()
+        : "";
+      const href = trackLinks.get(`${section}::${title}`) || trackLinks.get(title);
+
+      if (!href) return;
+
+      const link = document.createElement("a");
+      link.href = href;
+      if (href.startsWith("https://www.youtube.com/")) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      while (song.firstChild) link.appendChild(song.firstChild);
+      song.appendChild(link);
+    });
+  </script>
+
 </body>
 </html>
