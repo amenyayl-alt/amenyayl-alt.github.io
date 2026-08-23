@@ -41,9 +41,15 @@
   .crumb a{color:var(--gold);} .crumb a:hover{color:var(--gold-bright);}
   .crumb .sep{margin:0 8px;color:var(--muted);}
 
-  .hero{padding:48px 0 34px;text-align:center;}
+  .hero{padding:10px 0 34px;text-align:center;}
+  .hero-logo{
+    width:min(430px,88vw);aspect-ratio:2.1/1;margin:0 auto 12px;
+    overflow:hidden;position:relative;
+  }
+  .hero-logo img{position:absolute;top:0;left:50%;width:100%;max-width:none;height:auto;transform:translateX(-50%);}
   .hero .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
   .hero h1{font-weight:300;font-size:clamp(34px,6vw,52px);letter-spacing:.05em;color:#f6f0e2;}
+  .hero .byline{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-bright);margin-top:6px;}
   .hero .desc{max-width:600px;margin:14px auto 0;color:var(--muted);font-size:16px;}
   .hero .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:26px;}
   .hero .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
@@ -144,8 +150,12 @@
 
     <!-- HERO -->
     <header class="hero">
+      <div class="hero-logo">
+        <img src="/creative/music/Selesta_Reel_logo.png" alt="Selesta Reel">
+      </div>
       <div class="badge">Music</div>
       <h1>Music</h1>
+      <p class="byline">By Selesta Reel</p>
       <p class="desc">Songs, soundtracks, instrumental versions, and creative voices.</p>
       <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
     </header>
