@@ -593,6 +593,13 @@
       while (song.firstChild) link.appendChild(song.firstChild);
       song.appendChild(link);
     });
+
+    document.querySelectorAll(".acc .acc-body").forEach((list) => {
+      const comingSoonSongs = Array.from(list.children).filter((item) =>
+        item.classList.contains("song") && item.querySelector("a.is-coming-soon")
+      );
+      comingSoonSongs.forEach((song) => list.appendChild(song));
+    });
   </script>
 
 </body>
