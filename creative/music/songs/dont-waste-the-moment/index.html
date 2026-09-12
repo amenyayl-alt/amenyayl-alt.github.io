@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Don’t Waste the Moment — Milana's Choice</title>
+<meta name="description" content="Don’t Waste the Moment — four interpretations of one song, from accordion instrumental and female solo to tango solo and duet.">
+<style>
+  :root{
+    --gold:#e8b35a;--gold-bright:#ffdf9e;--text:#f0e7dc;--muted:#c8b8ad;
+    --serif:Georgia,"Times New Roman",serif;--sans:"Trebuchet MS",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;color:var(--text);font-family:var(--serif);line-height:1.7;background-color:#120c11;
+    background-image:linear-gradient(90deg,rgba(10,7,11,.66),rgba(10,7,11,.71)),url('dont-waste-the-moment-background.png');
+    background-size:cover;background-position:center center;background-attachment:fixed;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .topnav .brand{font-family:var(--sans);font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-bright)}
+  .topnav .brand span{color:var(--muted)}
+  .topnav nav{display:flex;gap:22px}
+  .topnav nav a,.foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .topnav nav a:hover,.topnav nav a.active,.foot-nav a:hover{color:var(--gold-bright)}
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px}
+  .crumb a{color:var(--gold)}.crumb a:hover{color:var(--gold-bright)}.crumb .sep{margin:0 8px}
+  .song-head{padding:42px 0 32px;text-align:center}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .song-head h1{font-weight:300;font-size:clamp(32px,5vw,50px);letter-spacing:.03em;color:#fff4e7;margin:0 0 16px}
+  .song-head .desc{max-width:670px;margin:0 auto;color:var(--muted);font-size:16px}
+  .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px}
+  .song-head .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.5),transparent)}
+  .song-head .diam{color:var(--gold-bright);font-size:12px;letter-spacing:.4em}
+  .cover{max-width:690px;margin:0 auto 44px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid rgba(255,217,158,.27);box-shadow:0 24px 70px -24px rgba(200,140,40,.45)}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .block{border-top:1px solid rgba(255,255,255,.12);padding:46px 0}
+  .block h2{font-weight:300;font-size:clamp(22px,3vw,28px);letter-spacing:.08em;color:#fff1dc;text-align:center;margin:0 0 12px}
+  .block h2 .star{display:block;color:var(--gold-bright);font-size:12px;letter-spacing:.3em;margin-top:12px}
+  .section-intro{max-width:620px;margin:0 auto 28px;text-align:center;color:var(--muted);font-size:15px}
+  .versions{display:grid;gap:18px;max-width:740px;margin:0 auto}
+  .version{padding:24px 26px;border:1px solid rgba(255,215,165,.23);border-radius:16px;background:linear-gradient(135deg,rgba(42,21,26,.85),rgba(20,14,20,.84));box-shadow:0 18px 45px rgba(0,0,0,.19)}
+  .version-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:12px}
+  .version-num{flex:0 0 34px;color:var(--gold-bright);font-family:var(--sans);font-size:12px;letter-spacing:.18em;padding-top:5px}
+  .version h3{font-weight:400;font-size:22px;line-height:1.2;color:#fff0df;margin:0 0 7px}
+  .version .version-desc{font-size:14px;color:var(--muted);margin:0}
+  .version audio{display:block;width:100%;margin:18px 0 16px;color-scheme:dark}
+  .version .pending{margin:16px 0 0;padding:13px 16px;border:1px dashed rgba(255,215,165,.25);border-radius:9px;font-family:var(--sans);font-size:13px;letter-spacing:.08em;color:#c7afa1}
+  .btn{display:inline-block;padding:12px 24px;border-radius:40px;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(135deg,#e8b35a,#caa24a);color:#1b110b;font-weight:600}
+  .btn:hover{box-shadow:0 0 28px rgba(232,179,90,.45);transform:translateY(-1px)}
+  .lyrics{max-width:560px;margin:30px auto 0;text-align:center}
+  .lyrics .stanza{margin-bottom:34px}
+  .lyrics .label{font-family:var(--sans);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:14px}
+  .lyrics p{font-size:17px;line-height:2;color:#f4e8dc;margin:0}
+  .lyrics .divider2{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 34px;color:var(--gold-bright);font-size:11px}
+  .lyrics .divider2 span{width:50px;height:1px;background:rgba(232,179,90,.4)}
+  footer{border-top:1px solid rgba(255,255,255,.1);padding:40px 0;margin-top:30px}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px}
+  .foot-line{text-align:center;color:var(--muted);font-size:13px;margin:0}.foot-line .heart{color:#e08ba0}
+  a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px}
+  @media(max-width:640px){
+    .topnav nav{display:none}.wrap{padding:0 20px}.song-head{padding-top:30px}
+    body{background-image:linear-gradient(rgba(12,8,12,.78),rgba(12,8,12,.88)),url('dont-waste-the-moment-background.png');background-position:30% center;background-attachment:scroll}
+    .cover{margin-bottom:34px}.version{padding:21px 18px}.version h3{font-size:20px}.lyrics p{font-size:16px}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+  <div class="wrap"><div class="topnav">
+    <a class="brand" href="/">Milana's <span>Choice</span></a>
+    <nav><a href="/">Home</a><a href="/creative">Creative</a><a class="active" href="/creative/music">Music</a></nav>
+  </div></div>
+
+  <main class="wrap">
+    <div class="crumb"><a href="/creative">Creative</a><span class="sep">✦</span><a href="/creative/music">Music</a><span class="sep">✦</span>Don’t Waste the Moment</div>
+    <section class="song-head">
+      <div class="badge">One song · Four interpretations</div>
+      <h1>Don’t Waste the Moment</h1>
+      <p class="desc">A moment can change everything when we give it time. Hear this song move through an accordion instrumental, a Euro-accordion solo, and two shades of tango.</p>
+      <div class="divider" aria-hidden="true"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
+    </section>
+    <div class="cover"><img src="dont-waste-the-moment-cover.png" alt="Don’t Waste the Moment cover art: a couple dancing by the Seine at night" width="1672" height="941"></div>
+
+    <section class="block" id="versions" aria-labelledby="versions-title">
+      <h2 id="versions-title">Four Ways to Feel the Moment <span class="star">✦ ✦</span></h2>
+      <p class="section-intro">One song, unfolding through four different conversations in music.</p>
+      <div class="versions">
+        <article class="version">
+          <div class="version-head"><span class="version-num">01</span><div><h3>Euro-accordion · Female solo</h3><p class="version-desc">An intimate first telling, carried by accordion and a solo voice.</p></div></div>
+          <audio controls preload="metadata"><source src="dont-waste-the-moment-euro-accordion.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>
+          <a class="btn" href="dont-waste-the-moment-euro-accordion.mp3" download>Download Original</a>
+        </article>
+        <article class="version">
+          <div class="version-head"><span class="version-num">02</span><div><h3>Accordion Nocturne · Instrumental</h3><p class="version-desc">A wordless nocturne that lets the accordion carry the entire story.</p></div></div>
+          <audio controls preload="metadata"><source src="dont-waste-the-moment-accordion-instrumental.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>
+          <a class="btn" href="dont-waste-the-moment-accordion-instrumental.mp3" download>Download Original</a>
+        </article>
+        <article class="version">
+          <div class="version-head"><span class="version-num">03</span><div><h3>Tango · Female solo</h3><p class="version-desc">A sharper, more dramatic turn through the same invitation.</p></div></div>
+          <audio controls preload="metadata"><source src="dont-waste-the-moment-tango-female-solo.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>
+          <a class="btn" href="dont-waste-the-moment-tango-female-solo.mp3" download>Download Original</a>
+        </article>
+        <article class="version">
+          <div class="version-head"><span class="version-num">04</span><div><h3>Tango · Duet</h3><p class="version-desc">Two voices answer each other inside the moment.</p></div></div>
+          <audio controls preload="metadata"><source src="dont-waste-the-moment-tango-duet.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>
+          <a class="btn" href="dont-waste-the-moment-tango-duet.mp3" download>Download Original</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" id="lyrics" aria-labelledby="lyrics-title">
+      <h2 id="lyrics-title">Lyrics <span class="star">✦ ✦</span></h2>
+      <div class="lyrics">
+        <div class="stanza"><div class="label">Verse 1</div><p>Come a little closer<br>I can read your eyes<br>No need to impress me<br>I already know why</p></div>
+        <div class="stanza"><p>Take your time beside me<br>Let the moment breathe<br>If you want to touch me<br>Give me something I can believe</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Pre-Chorus</div><p>Don’t come careless<br>Don’t come fast<br>Some things only work<br>When you make them last</p></div>
+        <div class="stanza"><p>No big promises<br>No disguise<br>Just come closer<br>And meet my eyes</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Chorus</div><p>Come closer, take your time<br>Let your heartbeat answer mine<br>No need to chase, no need to prove<br>Just know exactly how to move</p></div>
+        <div class="stanza"><p>Come closer, come with grace<br>Don’t rush what you can’t replace<br>If you mean it, let it show<br>Keep it slow<br>And let me know</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Verse 2</div><p>It’s easy not to risk it<br>Easy to stand still<br>Easy to let one moment<br>Slip past against your will</p></div>
+        <div class="stanza"><p>Some nights don’t wait forever<br>Some chances don’t return<br>You never know which silence<br>Might be the one that burns</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Pre-Chorus</div><p>Don’t come careless<br>Don’t come fast<br>Some things only work<br>When you make them last</p></div>
+        <div class="stanza"><p>No big promises<br>No disguise<br>Just come closer<br>And meet my eyes</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Chorus</div><p>Come closer, take your time<br>Let your heartbeat answer mine<br>No need to chase, no need to prove<br>Just know exactly how to move</p></div>
+        <div class="stanza"><p>Come closer, come with grace<br>Don’t rush what you can’t replace<br>If you mean it, let it show<br>Keep it slow<br>And let me know</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Bridge</div><p>Maybe this is nothing<br>Maybe this is rare<br>Maybe we’ll remember<br>How close we came to there</p></div>
+        <div class="stanza"><p>Some moments come just once<br>Then disappear from view<br>I’d rather know the answer<br>Than wonder what we knew</p></div>
+        <div class="divider2" aria-hidden="true"><span></span>✦<span></span></div>
+        <div class="stanza"><div class="label">Final Chorus</div><p>Come closer, take your time<br>Let your heartbeat answer mine<br>No need to chase, no need to prove<br>Just know exactly how to move</p></div>
+        <div class="stanza"><p>Come closer, come with grace<br>Don’t let this moment go to waste<br>If you mean it, let it show<br>Keep it slow<br>And let me know</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">
+    <div class="foot-nav"><a href="/creative">Creative Home</a><a href="/creative/music">Music</a><a href="/creative/stories">Stories &amp; Worlds</a><a href="/creative/visual">Visual Works</a></div>
+    <p class="foot-line">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+  </div></footer>
+</body>
+</html>
