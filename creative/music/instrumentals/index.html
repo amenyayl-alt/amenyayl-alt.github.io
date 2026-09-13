@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instrumental Collection — Milana's Choice</title>
+<meta name="description" content="A growing library of royalty-free instrumental tracks from Milana's Choice — filter by mood, listen, and download.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    background-image:
+      radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.06) 68%, rgba(0,0,0,0) 100%),
+      url('instrumental-collection-background.png');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);} .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  .song-head{padding:40px 0 30px;text-align:center;}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .song-head h1{font-weight:300;font-size:clamp(30px,5vw,46px);letter-spacing:.03em;color:#f6f0e2;margin-bottom:16px;}
+  .song-head .desc{max-width:640px;margin:0 auto;color:var(--muted);font-size:16px;}
+  .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+  .song-head .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
+  .song-head .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:40px 0;}
+  .block h2{font-weight:300;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1ead9;text-align:center;margin-bottom:8px;}
+  .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
+  .count-line{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:30px;}
+
+  .btn{display:inline-block;padding:13px 26px;border-radius:40px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,217,158,.4);color:var(--gold-bright);transition:all .3s;white-space:nowrap;}
+  .btn:hover{background:rgba(232,179,90,.12);box-shadow:0 0 24px rgba(232,179,90,.25);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 0 30px rgba(232,179,90,.55);}
+
+  /* filters */
+  .filters{max-width:900px;margin:0 auto 8px;}
+  .filter-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px;}
+  .filter-row.moods{margin-bottom:0;}
+  .pill{
+    font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    padding:9px 18px;border-radius:30px;border:1px solid rgba(255,217,158,.3);color:var(--muted);
+    background:transparent;cursor:pointer;transition:all .25s;
+  }
+  .pill:hover{border-color:rgba(255,217,158,.6);color:var(--gold-bright);}
+  .pill.active{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border-color:transparent;font-weight:600;}
+  .mood-chip{
+    font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:var(--muted);
+    background:transparent;cursor:pointer;transition:all .25s;
+  }
+  .mood-chip:hover{border-color:rgba(255,217,158,.5);color:var(--gold-bright);}
+  .mood-chip.active{background:rgba(232,179,90,.16);border-color:var(--gold);color:var(--gold-bright);}
+  .filters-divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:22px 0;}
+  .filters-divider .l{width:50px;height:1px;background:rgba(232,179,90,.3);}
+  .filters-divider .d{color:var(--gold);letter-spacing:.3em;font-size:10px;}
+
+  /* track grid */
+  .track-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;
+    max-width:1080px;margin:0 auto;
+  }
+  .track-card{
+    border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(10,9,7,.55);
+    padding:20px;display:flex;flex-direction:column;gap:14px;transition:border-color .3s,transform .3s;
+  }
+  .track-card:hover{border-color:rgba(255,217,158,.3);transform:translateY(-2px);}
+  .track-card.playing{border-color:rgba(255,217,158,.55);background:rgba(232,179,90,.06);}
+  .track-card.hidden{display:none;}
+  .track-card h3{font-weight:400;font-size:17px;color:#f1ead9;line-height:1.35;}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;}
+  .badge-cat{
+    font-family:var(--sans);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;font-weight:700;
+  }
+  .badge-tag{
+    font-family:var(--sans);font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+    padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:var(--muted);
+  }
+  .card-actions{display:flex;align-items:center;gap:10px;margin-top:auto;}
+  .play-btn{
+    display:flex;align-items:center;justify-content:center;width:38px;height:38px;flex:0 0 38px;
+    border-radius:50%;border:1px solid rgba(255,217,158,.4);background:transparent;color:var(--gold-bright);
+    cursor:pointer;transition:all .3s;
+  }
+  .play-btn:hover{background:rgba(232,179,90,.12);box-shadow:0 0 18px rgba(232,179,90,.25);}
+  .play-btn svg{width:14px;height:14px;fill:currentColor;}
+  .play-btn .icon-pause{display:none;}
+  .track-card.playing .play-btn{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border:none;}
+  .track-card.playing .play-btn .icon-play{display:none;}
+  .track-card.playing .play-btn .icon-pause{display:block;}
+  .dl-btn{padding:9px 18px;font-size:11px;flex:1;text-align:center;}
+
+  .no-results{text-align:center;color:var(--muted);font-size:14px;padding:30px 0;display:none;}
+  .no-results.show{display:block;}
+
+  .now-playing-bar{
+    position:fixed;left:0;right:0;bottom:0;z-index:20;
+    background:rgba(7,19,35,.92);backdrop-filter:blur(8px);border-top:1px solid rgba(255,217,158,.25);
+    padding:12px 24px;display:none;align-items:center;gap:16px;
+  }
+  .now-playing-bar.show{display:flex;}
+  .now-playing-bar .np-title{font-family:var(--sans);font-size:13px;letter-spacing:.05em;color:#f1ead9;flex:1;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:1080px;margin:0 auto;text-align:center;}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:30px;}
+  .foot-line{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-line .heart{color:#e08ba0;}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+
+  @media(max-width:640px){.topnav nav{display:none;}}
+
+  body{background-color:#071323;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:640px){
+    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),url('instrumental-collection-background.png');background-position:center;}
+    .wrap{padding:0 20px;}
+    .song-head{padding-top:30px;}
+    .track-grid{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topnav">
+      <a class="brand" href="/">Milana's <span>Choice</span></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/creative">Creative</a>
+        <a href="/creative/music" class="active">Music</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">
+      <a href="/creative">Creative</a><span class="sep">✦</span>
+      <a href="/creative/music">Music</a><span class="sep">✦</span>
+      Instrumental Collection
+    </div>
+
+    <!-- HEAD -->
+    <section class="song-head">
+      <div class="badge">Collection</div>
+      <h1>Instrumental Collection</h1>
+      <p class="desc">A growing library of royalty-free background instrumentals — filter by mood, listen, and download.</p>
+      <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="block" style="padding-bottom:10px;">
+      <div class="filters">
+        <div class="filter-row" id="categoryFilters"></div>
+        <div class="filters-divider"><span class="l"></span><span class="d">MOOD</span><span class="l"></span></div>
+        <div class="filter-row moods" id="moodFilters"></div>
+      </div>
+    </section>
+
+    <!-- TRACK GRID -->
+    <section class="block" style="border-top:none;padding-top:14px;">
+      <p class="count-line" id="countLine"></p>
+      <div class="track-grid" id="trackGrid"></div>
+      <p class="no-results" id="noResults">No tracks match this combination — try clearing a mood filter.</p>
+    </section>
+</div>
+
+  <div class="now-playing-bar" id="nowPlayingBar">
+    <span class="np-title" id="nowPlayingTitle"></span>
+  </div>
+  <audio id="sharedPlayer" preload="none"></audio>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-nav">
+        <a href="/creative">Creative Home</a>
+        <a href="/creative/music">Music</a>
+        <a href="/creative/stories">Stories &amp; Worlds</a>
+        <a href="/creative/visual">Visual Works</a>
+      </div>
+      <p class="foot-line">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    // ---- DATA ------------------------------------------------------------
+    // file: exact filename inside ./tracks/  |  title: display title
+    // category: one primary category  |  tags: descriptive mood tags
+    var TRACKS = [
+      // ATMOSPHERIC
+      {file:"floating-above-20240607-021309 (1).mp3", title:"Floating Above — Version 1", category:"Atmospheric", tags:["dreamy","ambient","floating","calm","spacious","reflective"]},
+      {file:"floating-above-20240607-021412.mp3", title:"Floating Above — Version 2", category:"Atmospheric", tags:["dreamy","ambient","floating","calm","spacious","reflective"]},
+      {file:"floating-above-20240607-021309.mp3", title:"Floating Above — Version 3", category:"Atmospheric", tags:["dreamy","ambient","floating","calm","spacious","reflective"]},
+      {file:"whispering-pines-20240528-235322.mp3", title:"Whispering Pines", category:"Atmospheric", tags:["nature","calm","gentle","reflective","organic"]},
+      {file:"whispers-of-time-20240607-073712.mp3", title:"Whispers of Time", category:"Atmospheric", tags:["contemplative","soft","timeless","mysterious","reflective"]},
+      {file:"desert-dreams-20240528-233132.mp3", title:"Desert Dreams — Version 1", category:"Atmospheric", tags:["desert","dreamy","cinematic","mysterious","spacious"]},
+      {file:"desert-dreams-20240528-231839.mp3", title:"Desert Dreams — Version 2", category:"Atmospheric", tags:["desert","dreamy","cinematic","mysterious","spacious"]},
+      {file:"echoes-of-eternity-20240607-020319.mp3", title:"Echoes of Eternity", category:"Atmospheric", tags:["ethereal","reflective","cinematic","spacious","emotional"]},
+      {file:"whispers-of-the-dawn-20240607-014706.mp3", title:"Whispers of the Dawn", category:"Atmospheric", tags:["dawn","gentle","hopeful","calm","atmospheric"]},
+      {file:"whispers-of-the-wind-20240607-015711.mp3", title:"Whispers of the Wind", category:"Atmospheric", tags:["nature","airy","gentle","calm","reflective"]},
+      {file:"chillwave-instruments-dreamy-synths-soft-drums-nostalgic-pads-mellow-bass-moods-hazy-retro-laidback-atmospheric-bpm-78-042624.mp3", title:"Hazy Retro Chillwave", category:"Atmospheric", tags:["chillwave","dreamy","synth","soft","modern","relaxed"]},
+
+      // CINEMATIC
+      {file:"symphonic-journey-20240608-192238.mp3", title:"Symphonic Journey", category:"Cinematic", tags:["orchestral","journey","sweeping","inspirational","dramatic"]},
+      {file:"majestic-hearts-20240608-193223.mp3", title:"Majestic Hearts — Version 1", category:"Cinematic", tags:["majestic","orchestral","emotional","inspirational","uplifting"]},
+      {file:"majestic-hearts-20240608-193157.mp3", title:"Majestic Hearts — Version 2", category:"Cinematic", tags:["majestic","orchestral","emotional","inspirational","uplifting"]},
+      {file:"echoes-of-destiny-20240608-193537.mp3", title:"Echoes of Destiny — Version 1", category:"Cinematic", tags:["destiny","dramatic","orchestral","emotional","epic"]},
+      {file:"echoes-of-destiny-20240608-193634 (1).mp3", title:"Echoes of Destiny — Version 2", category:"Cinematic", tags:["destiny","dramatic","orchestral","emotional","epic"]},
+      {file:"echoes-of-destiny-20240608-193634.mp3", title:"Echoes of Destiny — Version 3", category:"Cinematic", tags:["destiny","dramatic","orchestral","emotional","epic"]},
+      {file:"rise-of-the-dawn-20240529-050544 (1).mp3", title:"Rise of the Dawn — Version 1", category:"Cinematic", tags:["rising","hopeful","inspirational","dramatic","triumphant"]},
+      {file:"rise-of-the-dawn-20240529-050544.mp3", title:"Rise of the Dawn — Version 2", category:"Cinematic", tags:["rising","hopeful","inspirational","dramatic","triumphant"]},
+      {file:"rise-of-the-dawn-20240529-045415.mp3", title:"Rise of the Dawn — Version 3", category:"Cinematic", tags:["rising","hopeful","inspirational","dramatic","triumphant"]},
+      {file:"shining-beacon-20240529-050942.mp3", title:"Shining Beacon — Version 1", category:"Cinematic", tags:["hopeful","inspirational","uplifting","luminous","heroic"]},
+      {file:"shining-beacon-20240529-050834.mp3", title:"Shining Beacon — Version 2", category:"Cinematic", tags:["hopeful","inspirational","uplifting","luminous","heroic"]},
+      {file:"rising-beyond-the-horizon-20240529-050044.mp3", title:"Rising Beyond the Horizon", category:"Cinematic", tags:["horizon","expansive","uplifting","inspirational","cinematic"]},
+      {file:"rise-and-conquer-20240529-045725.mp3", title:"Rise and Conquer", category:"Cinematic", tags:["powerful","triumphant","motivational","heroic","energetic"]},
+      {file:"march-of-unity-20240529-044516.mp3", title:"March of Unity", category:"Cinematic", tags:["march","unity","ceremonial","powerful","inspirational"]},
+      {file:"rise-above-20240529-050248.mp3", title:"Rise Above", category:"Cinematic", tags:["uplifting","motivational","hopeful","powerful","inspirational"]},
+      {file:"velikolepnoe-zrelische-uhodyaschego-solntsa-192.mp3", title:"Великолепное зрелище уходящего солнца", category:"Cinematic", tags:["sunset","beautiful","reflective","emotional","scenic","cinematic"]},
+
+      // EMOTIONAL
+      {file:"loves-last-note-20240608-194443.mp3", title:"Love's Last Note", category:"Emotional", tags:["romantic","bittersweet","reflective","tender","melancholy"]},
+      {file:"molcha-lyubovatsya-peyzajem-201.mp3", title:"Молча любоваться пейзажем", category:"Emotional", tags:["peaceful","scenic","reflective","tender","contemplative"]},
+      {file:"nahlyinuli-priyatnyie-nemnogo-grustnyie-vospominaniya-104.mp3", title:"Нахлынули приятные, немного грустные воспоминания", category:"Emotional", tags:["bittersweet","nostalgic","gentle","reflective","slightly-sad"]},
+
+      // DANCE
+      {file:"moonlight-dance-20240608-174805.mp3", title:"Moonlight Dance", category:"Dance", tags:["night","rhythmic","elegant","romantic","dance"]},
+      {file:"dancing-shadows-20240608-173710.mp3", title:"Dancing Shadows", category:"Dance", tags:["mysterious","rhythmic","nocturnal","dramatic","stylish"]},
+      {file:"moonlit-dance-20240608-174011.mp3", title:"Moonlit Dance — Version 1", category:"Dance", tags:["moonlight","romantic","rhythmic","nocturnal","elegant"]},
+      {file:"moonlit-dance-20240608-174047.mp3", title:"Moonlit Dance — Version 2", category:"Dance", tags:["moonlight","romantic","rhythmic","nocturnal","elegant"]},
+      {file:"dance-the-night-away-20240608-173218.mp3", title:"Dance the Night Away", category:"Dance", tags:["energetic","nightlife","upbeat","rhythmic","fun"]},
+      {file:"electric-skies-20240607-012512.mp3", title:"Electric Skies", category:"Dance", tags:["electronic","modern","energetic","synth","futuristic"]},
+
+      // UPBEAT
+      {file:"sunshine-jammin.mp3", title:"Sunshine Jammin'", category:"Upbeat", tags:["sunny","cheerful","energetic","positive","fun"]},
+      {file:"sunshine-vibes.mp3", title:"Sunshine Vibes", category:"Upbeat", tags:["sunny","cheerful","relaxed","positive","light"]},
+      {file:"ridin-wild-wild-wild-1.mp3", title:"Ridin' Wild Wild Wild", category:"Upbeat", tags:["adventurous","energetic","playful","road-trip","fun"]},
+
+      // PLAYFUL
+      {file:"dreamland-adventures-1.mp3", title:"Dreamland Adventures — Version 1", category:"Playful", tags:["whimsical","adventure","fantasy","cheerful","imaginative"]},
+      {file:"dreamland-adventures.mp3", title:"Dreamland Adventures — Version 2", category:"Playful", tags:["whimsical","adventure","fantasy","cheerful","imaginative"]},
+      {file:"sugar-rush.mp3", title:"Sugar Rush", category:"Playful", tags:["sweet","energetic","cheerful","quirky","fun"]},
+      {file:"fairy-tale-remix.mp3", title:"Fairy Tale Remix", category:"Playful", tags:["fairy-tale","whimsical","magical","fantasy","cheerful"]},
+      {file:"skip-and-hop-1.mp3", title:"Skip and Hop", category:"Playful", tags:["bouncy","cheerful","light","childlike","fun"]},
+      {file:"sweet-scoops.mp3", title:"Sweet Scoops", category:"Playful", tags:["sweet","cheerful","light","whimsical","playful"]},
+
+      // CORPORATE
+      {file:"soft-rock-instruments-gentle-electric-guitar-unobtrusive-drums-soft-bass-subtle-synths-moods-confident-unobtrusive-persistent-motivational-bpm-95-042624.mp3", title:"Confident Soft Rock", category:"Corporate", tags:["soft-rock","guitar","warm","professional","relaxed"]},
+      {file:"corporate-instruments-warm-piano-soft-strings-gentle-guitar-unobtrusive-bass-moods-professional-motivational-friendly-trustworthy-bpm-90-042624.mp3", title:"Warm Piano Corporate", category:"Corporate", tags:["piano","warm","professional","calm","presentation"]},
+      {file:"corporate-instruments-motivational-piano-soft-strings-gentle-guitar-unobtrusive-bass-moods-professional-unobtrusive-confident-encouraging-bpm-100-042624.mp3", title:"Motivational Piano Corporate", category:"Corporate", tags:["motivational","piano","uplifting","professional","presentation"]},
+      {file:"corporate-technology-instruments-inspiring-synths-uplifting-pads-motivational-piano-subtle-drums-moods-innovative-successful-confident-driving-bpm-95-042624.mp3", title:"Inspiring Corporate Technology", category:"Corporate", tags:["technology","modern","inspiring","professional","innovation"]},
+      {file:"pop-instruments-cheerful-piano-soft-guitar-gentle-drums-unobtrusive-bass-moods-uplifting-friendly-optimistic-engaging-bpm-110-042624.mp3", title:"Cheerful Piano Pop", category:"Corporate", tags:["cheerful","piano","guitar","light","professional"]},
+      {file:"corporate-motivational-instruments-uplifting-piano-soft-strings-gentle-guitar-unobtrusive-bass-moods-inspiring-positive-unobtrusive-encouraging-bpm-100-042624.mp3", title:"Uplifting Corporate Motivation", category:"Corporate", tags:["motivational","uplifting","professional","training","presentation"]}
+    ];
+
+    var CATEGORIES = ["All","Atmospheric","Cinematic","Emotional","Dance","Upbeat","Playful","Corporate"];
+    var MOODS = ["Calm","Dreamy","Reflective","Emotional","Romantic","Uplifting","Inspirational","Energetic","Playful","Mysterious","Professional","Nature","Cinematic","Electronic"];
+
+    var state = { category: "All", moods: new Set() };
+
+    // ---- BUILD FILTER BARS ------------------------------------------------
+    var catWrap = document.getElementById('categoryFilters');
+    CATEGORIES.forEach(function(cat){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pill' + (cat === 'All' ? ' active' : '');
+      b.textContent = cat;
+      b.setAttribute('data-cat', cat);
+      b.addEventListener('click', function(){
+        state.category = cat;
+        catWrap.querySelectorAll('.pill').forEach(function(p){ p.classList.remove('active'); });
+        b.classList.add('active');
+        applyFilters();
+      });
+      catWrap.appendChild(b);
+    });
+
+    var moodWrap = document.getElementById('moodFilters');
+    MOODS.forEach(function(mood){
+      var key = mood.toLowerCase();
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mood-chip';
+      b.textContent = mood;
+      b.setAttribute('data-mood', key);
+      b.addEventListener('click', function(){
+        if (state.moods.has(key)) { state.moods.delete(key); b.classList.remove('active'); }
+        else { state.moods.add(key); b.classList.add('active'); }
+        applyFilters();
+      });
+      moodWrap.appendChild(b);
+    });
+
+    // ---- BUILD TRACK CARDS -------------------------------------------------
+    var grid = document.getElementById('trackGrid');
+    var audio = document.getElementById('sharedPlayer');
+    var bar = document.getElementById('nowPlayingBar');
+    var barTitle = document.getElementById('nowPlayingTitle');
+
+    function encodedPath(file){
+      return 'tracks/' + encodeURIComponent(file);
+    }
+
+    TRACKS.forEach(function(t, i){
+      var card = document.createElement('div');
+      card.className = 'track-card';
+      card.setAttribute('data-category', t.category);
+      card.setAttribute('data-tags', t.tags.join(','));
+
+      var badgesHtml = '<span class="badge-cat">' + t.category + '</span>' +
+        t.tags.slice(0,3).map(function(tag){ return '<span class="badge-tag">' + tag + '</span>'; }).join('');
+
+      card.innerHTML =
+        '<h3>' + t.title + '</h3>' +
+        '<div class="badges">' + badgesHtml + '</div>' +
+        '<div class="card-actions">' +
+          '<button class="play-btn" type="button" aria-label="Play ' + t.title.replace(/"/g,'&quot;') + '">' +
+            '<svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+            '<svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>' +
+          '</button>' +
+          '<a class="btn solid dl-btn" href="' + encodedPath(t.file) + '" download>Download</a>' +
+        '</div>';
+
+      var playBtn = card.querySelector('.play-btn');
+      var src = encodedPath(t.file);
+      playBtn.addEventListener('click', function(){
+        var isThisPlaying = card.classList.contains('playing') && !audio.paused;
+        if (isThisPlaying) {
+          audio.pause();
+          card.classList.remove('playing');
+          bar.classList.remove('show');
+          return;
+        }
+        if (audio.getAttribute('data-current') !== src) {
+          audio.src = src;
+          audio.setAttribute('data-current', src);
+        }
+        audio.play().catch(function(){ /* ignore playback errors on placeholder files */ });
+        grid.querySelectorAll('.track-card').forEach(function(c){ c.classList.remove('playing'); });
+        card.classList.add('playing');
+        barTitle.textContent = 'Now playing: ' + t.title;
+        bar.classList.add('show');
+      });
+
+      grid.appendChild(card);
+    });
+
+    audio.addEventListener('ended', function(){
+      grid.querySelectorAll('.track-card').forEach(function(c){ c.classList.remove('playing'); });
+      bar.classList.remove('show');
+    });
+
+    // ---- FILTER LOGIC -------------------------------------------------------
+    var countLine = document.getElementById('countLine');
+    var noResults = document.getElementById('noResults');
+
+    function applyFilters(){
+      var cards = grid.querySelectorAll('.track-card');
+      var visible = 0;
+      cards.forEach(function(card){
+        var cat = card.getAttribute('data-category');
+        var tags = card.getAttribute('data-tags').split(',');
+        var catOk = (state.category === 'All' || state.category === cat);
+        var moodOk = (state.moods.size === 0) || Array.from(state.moods).some(function(m){ return tags.indexOf(m) !== -1; });
+        var show = catOk && moodOk;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      countLine.textContent = visible + (visible === 1 ? ' track' : ' tracks');
+      noResults.classList.toggle('show', visible === 0);
+    }
+
+    applyFilters();
+  })();
+  </script>
+
+</body>
+</html>
