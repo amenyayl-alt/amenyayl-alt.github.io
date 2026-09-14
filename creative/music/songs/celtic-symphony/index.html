@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Is the Fish? — Celtic Symphony — Milana's Choice</title>
+<meta name="description" content="How Much Is the Fish? — Celtic Symphony — an instrumental tribute to Scooter's iconic track, fusing violin, electric guitar, orchestra and trance. Watch and listen on Milana's Choice.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    background-image:
+      radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.06) 68%, rgba(0,0,0,0) 100%),
+      url('celtic-symphony-background.png');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);} .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  .song-head{padding:40px 0 34px;text-align:center;}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .song-head h1{font-weight:300;font-size:clamp(26px,4.4vw,42px);letter-spacing:.03em;color:#f6f0e2;margin-bottom:16px;}
+  .song-head .desc{max-width:640px;margin:0 auto;color:var(--muted);font-size:16px;}
+  .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+  .song-head .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
+  .song-head .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .cover{
+    max-width:560px;margin:0 auto 40px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;
+    background:radial-gradient(80% 80% at 50% 40%, #6a4a1c, #241505);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-bright);
+    border:1px solid rgba(255,217,158,.25);box-shadow:0 24px 70px -24px rgba(200,140,40,.5);
+  }
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
+  .block h2{font-weight:300;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1ead9;text-align:center;margin-bottom:34px;}
+  .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
+
+  /* video */
+  .video-box{max-width:640px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0a0704;overflow:hidden;position:relative;}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  /* about / instrumental note (replaces lyrics for instrumental tracks) */
+  .about{max-width:560px;margin:0 auto;text-align:center;}
+  .about p{font-size:16px;line-height:1.9;color:#e9e2d4;margin-bottom:22px;}
+  .about .note{font-family:var(--sans);font-size:12px;letter-spacing:.03em;color:var(--muted);line-height:1.8;}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:30px;}
+  .foot-line{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-line .heart{color:#e08ba0;}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+
+  @media(max-width:640px){.topnav nav{display:none;}}
+
+  body{background-color:#071323;}
+  .cover{background:#101c2c;}
+  a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:640px){
+    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),url('celtic-symphony-background.png');background-position:center;}
+    .wrap{padding:0 20px;}
+    .song-head{padding-top:30px;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topnav">
+      <a class="brand" href="/">Milana's <span>Choice</span></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/creative">Creative</a>
+        <a href="/creative/music" class="active">Music</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">
+      <a href="/creative">Creative</a><span class="sep">✦</span>
+      <a href="/creative/music">Music</a><span class="sep">✦</span>
+      Celtic Symphony
+    </div>
+
+    <!-- HEAD -->
+    <section class="song-head">
+      <div class="badge">Instrumental</div>
+      <h1>How Much Is the Fish? — Celtic Symphony</h1>
+      <p class="desc">An instrumental tribute to Scooter's iconic track — violin and electric guitar chase each other through a storm of orchestra, trance and Eurodance at 185 BPM.</p>
+      <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
+    </section>
+
+    <!-- COVER -->
+    <div class="cover">
+      <img src="celtic-symphony-cover.jpg" alt="How Much Is the Fish? — Celtic Symphony — cover art" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+
+    <!-- VIDEO -->
+    <section class="block">
+      <h2>Video <span class="star">✦ ✦</span></h2>
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/bZ0OgVh4aOE" title="How Much Is the Fish? — Celtic Symphony — official video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- ABOUT (instrumental — no lyrics) -->
+    <section class="block" id="about">
+      <h2>About the Track <span class="star">✦ ✦</span></h2>
+      <div class="about">
+        <p>What happens when a melody from Scooter's "How Much Is the Fish?" wanders out of a rave and discovers its Celtic soul? Nearly three decades after the original 1998 question, this instrumental reimagining lets violin and electric guitar trade rapid runs and harmonized themes over driving double-kick drums and bright synths — with a lyrical bridge before the full arrangement charges back for the finale. The fish market imagery is our affectionate salute to the question that started it all.</p>
+        <p class="note">This is a fan-made instrumental tribute and reinterpretation. The original composition and all associated rights belong to their respective copyright holders.</p>
+      </div>
+    </section>
+</div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-nav">
+        <a href="/creative">Creative Home</a>
+        <a href="/creative/music">Music</a>
+        <a href="/creative/stories">Stories &amp; Worlds</a>
+        <a href="/creative/visual">Visual Works</a>
+      </div>
+      <p class="foot-line">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+    </div>
+  </footer>
+
+</body>
+</html>
