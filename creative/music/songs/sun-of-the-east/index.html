@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Солнце Востока (Sun of the East) — Milana's Choice</title>
+<meta name="description" content="Солнце Востока — яркий узбекский сценический танец в исполнении ансамбля «Фантазия», из коллекции «Когда Узбекистан танцует». Смотрите на Milana's Choice.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    background-image:
+      radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.06) 68%, rgba(0,0,0,0) 100%),
+      url('sun-of-the-east-background.png');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);} .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  .song-head{padding:40px 0 34px;text-align:center;}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .song-head h1{font-weight:300;font-size:clamp(28px,4.6vw,44px);letter-spacing:.03em;color:#f6f0e2;margin-bottom:16px;}
+  .song-head .desc{max-width:640px;margin:0 auto;color:var(--muted);font-size:16px;}
+  .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+  .song-head .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
+  .song-head .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
+  .block h2{font-weight:300;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1ead9;text-align:center;margin-bottom:34px;}
+  .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
+
+  /* video — enlarged frame for video-only pages (no lyrics/download) */
+  .video-box{max-width:860px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0a0704;overflow:hidden;position:relative;box-shadow:0 30px 80px -30px rgba(200,140,40,.4);}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  /* credits */
+  .credits{max-width:480px;margin:0 auto;text-align:center;}
+  .credits p{color:var(--muted);font-size:14px;line-height:1.8;}
+  .credits .gold{color:var(--gold-bright);}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:30px;}
+  .foot-line{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-line .heart{color:#e08ba0;}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+
+  @media(max-width:640px){.topnav nav{display:none;}}
+
+  body{background-color:#071323;}
+  a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:640px){
+    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),url('sun-of-the-east-background.png');background-position:center;}
+    .wrap{padding:0 20px;}
+    .song-head{padding-top:30px;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topnav">
+      <a class="brand" href="/">Milana's <span>Choice</span></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/creative">Creative</a>
+        <a href="/creative/music" class="active">Music</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">
+      <a href="/creative">Creative</a><span class="sep">✦</span>
+      <a href="/creative/music">Music</a><span class="sep">✦</span>
+      Солнце Востока
+    </div>
+
+    <!-- HEAD -->
+    <section class="song-head">
+      <div class="badge">Dance</div>
+      <h1>Солнце Востока (Sun of the East)</h1>
+      <p class="desc">Яркий узбекский сценический танец в исполнении ансамбля «Фантазия» — тепло, свет и энергия востока в движении.</p>
+      <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
+    </section>
+
+    <!-- VIDEO (enlarged, video-only page: no lyrics/download) -->
+    <section class="block" style="border-top:none;padding-top:0;">
+      <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/DZ5ELydpBl4" title="Солнце Востока (Sun of the East) — видео" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <section class="block">
+      <div class="credits">
+        <p>Театр танца «Фантазия» (Фергана, Узбекистан) — основан в 1983 году Сергеем Фёдоровым.<br>Архивная запись, восстановленная для коллекции<br><span class="gold">«Когда Узбекистан танцует»</span></p>
+      </div>
+    </section>
+</div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-nav">
+        <a href="/creative">Creative Home</a>
+        <a href="/creative/music">Music</a>
+        <a href="/creative/stories">Stories &amp; Worlds</a>
+        <a href="/creative/visual">Visual Works</a>
+      </div>
+      <p class="foot-line">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+    </div>
+  </footer>
+
+</body>
+</html>
