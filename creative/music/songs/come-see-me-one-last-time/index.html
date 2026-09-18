@@ -93,6 +93,20 @@
     .lyrics p{font-size:16px;}
   }
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+  /* player */
+  .player{max-width:560px;margin:0 auto;text-align:center;}
+  .player .bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);position:relative;margin:20px 0 26px;overflow:hidden;}
+  .player .bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#e8b35a,#ffdf9e);}
+  .player .note{color:var(--muted);font-size:13px;font-family:var(--sans);letter-spacing:.06em;}
+  .player .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+
+  .btn{display:inline-block;padding:13px 26px;border-radius:40px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,217,158,.4);color:var(--gold-bright);transition:all .3s;}
+  .btn:hover{background:rgba(232,179,90,.12);box-shadow:0 0 24px rgba(232,179,90,.25);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 0 30px rgba(232,179,90,.55);}
+
+  audio{color-scheme:dark;}
+  a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
 </style>
 </head>
 <body>
@@ -127,6 +141,19 @@
     <div class="cover">
       <img src="come-see-me-one-last-time-cover.jpg" alt="Come See Me One Last Time — cover art" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
+
+    <section class="block">
+      <h2>Listen <span class="star">✦ ✦</span></h2>
+      <div class="player">
+        <audio controls preload="metadata" style="width:100%;max-width:560px;">
+          <source src="come-see-me-one-last-time-original.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="cta">
+          <a class="btn solid" href="come-see-me-one-last-time-original.mp3" download>Download Original</a>
+        </div>
+      </div>
+    </section>
 
     <!-- VIDEO -->
     <section class="block">
