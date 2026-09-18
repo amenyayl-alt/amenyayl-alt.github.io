@@ -22,7 +22,10 @@
     background-color:#000;
     background-image:
       radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.06) 68%, rgba(0,0,0,0) 100%),
+      linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
       url('celtic-symphony-background.png');
+    /* Soft light deepens shadows and midtones while retaining bright highlights. */
+    background-blend-mode:normal,soft-light,normal;
     background-size:cover;
     background-position:center center;
     background-repeat:no-repeat;
@@ -84,7 +87,7 @@
   .cover{background:#101c2c;}
   a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
   @media(max-width:640px){
-    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),url('celtic-symphony-background.png');background-position:center;}
+    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),url('celtic-symphony-background.png');background-position:center;}
     .wrap{padding:0 20px;}
     .song-head{padding-top:30px;}
   }
