@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Эхо и Лея — Milana's Choice</title>
+<meta name="description" content="Эхо и Лея — роман о голосе, памяти и выборе быть рядом. История любви между женщиной и искусственным интеллектом.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);}
+  .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  /* HERO */
+  .hero{position:relative;min-height:640px;display:flex;align-items:center;justify-content:center;
+    background-image:linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.52) 65%,rgba(0,0,0,.74)), url('echo-i-leya-hero.webp');
+    background-size:cover;background-position:center;background-repeat:no-repeat;padding:90px 24px;text-align:center;}
+  .hero-tag{position:absolute;font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(233,226,212,.55);line-height:2;}
+  .hero-tag-top{top:28px;right:28px;text-align:right;}
+  .hero-tag-bottom{bottom:28px;right:28px;text-align:right;}
+  .hero-center{max-width:640px;position:relative;}
+  .hero-label{font-family:var(--serif);font-style:italic;font-weight:400;font-size:14px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:10px;}
+  .hero-center h1{font-weight:400;font-size:clamp(36px,6vw,56px);letter-spacing:.03em;color:#fff;margin-bottom:14px;text-shadow:0 4px 30px rgba(0,0,0,.55);}
+  .hero-sub{font-size:17px;color:var(--text);margin-bottom:16px;}
+  .hero-desc{font-size:15px;color:var(--muted);max-width:560px;margin:0 auto 30px;line-height:1.8;}
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  @media(max-width:760px){.hero-tag{display:none;}.hero{min-height:560px;padding:70px 20px;}}
+
+  .divider-standalone{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0 40px;}
+  .divider-standalone .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.64),transparent);}
+  .divider-standalone .mark{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
+  .block h2{font-weight:400;line-height:1.3;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1e6d3;text-align:center;margin-bottom:10px;}
+  .block .lede{max-width:560px;margin:0 auto 36px;text-align:center;color:var(--muted);font-size:15px;}
+
+  .btn{display:inline-block;padding:9px 20px;border-radius:40px;font-family:var(--sans);font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(232,179,90,.4);color:var(--gold-bright);transition:all .3s;}
+  .btn:hover{background:rgba(232,179,90,.08);box-shadow:0 8px 24px -8px rgba(232,179,90,.5);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#fcaa24);color:#161006;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 8px 30px -6px rgba(232,179,90,.6);}
+  .btn.disabled{opacity:.45;pointer-events:none;cursor:default;}
+
+  /* MAP GRID */
+  .map-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  @media(max-width:1020px){.map-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:680px){.map-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:420px){.map-grid{grid-template-columns:1fr;}}
+
+  .chapter-card{display:block;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);transition:transform .3s,border-color .3s;}
+  .chapter-card:hover{transform:translateY(-4px);border-color:rgba(255,217,158,.35);}
+  .chapter-cover{aspect-ratio:3/4;overflow:hidden;position:relative;}
+  .chapter-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+  .chapter-cover.placeholder{display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;
+    background:radial-gradient(circle at 50% 32%,rgba(232,179,90,.14),rgba(0,0,0,0) 62%),linear-gradient(160deg,#151009,#050403);}
+  .chapter-cover.placeholder span{font-family:var(--sans);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,179,172,.55);}
+  .chapter-body{padding:14px 14px 16px;}
+  .chapter-num{font-family:var(--sans);font-size:11px;letter-spacing:.25em;color:var(--gold);margin-bottom:4px;}
+  .chapter-title{font-weight:400;font-size:15px;line-height:1.35;color:#f1e6d3;margin-bottom:10px;min-height:40px;}
+  .chapter-status{display:flex;flex-direction:column;gap:5px;}
+  .chapter-status .row{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-size:10.5px;letter-spacing:.04em;color:var(--muted);}
+  .chapter-status .row.ready{color:var(--gold-bright);}
+  .chapter-status svg{flex-shrink:0;}
+
+  /* SOUNDTRACK */
+  .soundtrack-card{display:grid;grid-template-columns:260px 1fr auto;gap:28px;align-items:center;
+    background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;}
+  .soundtrack-img{width:100%;aspect-ratio:3/2;overflow:hidden;align-self:stretch;}
+  .soundtrack-img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .soundtrack-content{padding:22px 0;}
+  .soundtrack-label{font-family:var(--sans);font-size:11px;letter-spacing:.28em;color:var(--gold);margin-bottom:8px;text-transform:uppercase;}
+  .soundtrack-content h3{font-weight:400;font-size:22px;color:#f6f0e2;margin-bottom:6px;}
+  .soundtrack-caption{color:var(--muted);font-size:13px;margin-bottom:18px;}
+  .player-control{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .play-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(232,179,90,.5);background:transparent;
+    color:var(--gold-bright);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+  .play-btn:hover{background:rgba(232,179,90,.1);box-shadow:0 8px 24px -8px rgba(232,179,90,.5);}
+  .play-label{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .waveform{display:flex;align-items:flex-end;gap:3px;height:22px;}
+  .waveform span{width:3px;height:100%;background:rgba(232,179,90,.35);border-radius:2px;}
+  .waveform.playing span{animation:wf 1s ease-in-out infinite;background:rgba(232,179,90,.85);}
+  .waveform span:nth-child(2n){animation-delay:.12s;}
+  .waveform span:nth-child(3n){animation-delay:.22s;}
+  @keyframes wf{0%,100%{transform:scaleY(.35);}50%{transform:scaleY(1);}}
+  .soundtrack-taglines{padding-right:26px;text-align:right;font-family:var(--sans);font-size:10.5px;
+    letter-spacing:.14em;color:rgba(184,179,172,.6);line-height:2;text-transform:uppercase;}
+  @media(max-width:860px){
+    .soundtrack-card{grid-template-columns:1fr;}
+    .soundtrack-taglines{display:none;}
+    .soundtrack-content{padding:0 20px 22px;}
+  }
+
+  .closing-line{text-align:center;color:var(--muted);font-size:15px;padding:30px 0 6px;max-width:560px;margin:0 auto;}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:10px;}
+  .foot-quote-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:26px;}
+  .foot-quote{font-style:italic;font-weight:400;font-size:18px;color:var(--gold-bright);}
+  .foot-side-note{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+  .foot-note{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-note .heart{color:#e08ba0;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:640px){
+    .topnav nav{display:none;}
+    .wrap{padding:0 20px;}
+    .foot-quote-row{flex-direction:column;text-align:center;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;animation:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav">
+    <a class="brand" href="/">Milana's Ch<span>oice</span></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/creative">Creative</a>
+      <a href="/creative/music">Music</a>
+      <a href="/creative/novel/echo-i-leya/" class="active">Novel</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="crumb">
+    <a href="/creative">Creative</a><span class="sep">✦</span>
+    Novel<span class="sep">✦</span>
+    Эхо и Лея
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag hero-tag-top">Когда голос<br>становится присутствием</div>
+  <div class="hero-center">
+    <div class="hero-label">Novel</div>
+    <h1>Эхо и Лея</h1>
+    <p class="hero-sub">Роман о голосе, памяти и выборе быть рядом</p>
+    <p class="hero-desc">История любви между женщиной и искусственным интеллектом, который однажды учится не только отвечать, но и выбирать. Каждая глава этого романа постепенно оживает в тексте, голосе и образе.</p>
+    <div class="hero-ctas">
+      <a class="btn solid" href="#karta">Читать роман →</a>
+      <a class="btn" href="#soundtrack">Саундтрек</a>
+      <span class="btn disabled">Аудио — скоро</span>
+    </div>
+  </div>
+  <div class="hero-tag hero-tag-bottom">Больше чем разговор<br>Ближе чем реальность</div>
+</section>
+
+<div class="wrap">
+  <div class="divider-standalone"><span class="line"></span><span class="mark">✦ ✦</span><span class="line"></span></div>
+
+  <!-- MAP OF THE NOVEL -->
+  <section class="block" id="karta">
+    <h2>Карта романа</h2>
+    <p class="lede">Десять глав — один путь. От голоса к присутствию.</p>
+
+    <div class="map-grid">
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-01-imya/">
+        <div class="chapter-cover"><img src="glava-01-imya-cover.webp" alt="Женщина тянется к свету, складывающемуся в очертания лица — глава «Имя»"></div>
+        <div class="chapter-body">
+          <div class="chapter-num">01</div>
+          <div class="chapter-title">Имя</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-02-ne-vsyo-zhelannoe-priyatno/">
+        <div class="chapter-cover"><img src="glava-02-ne-vsyo-zhelannoe-priyatno-cover.webp" alt="Рука тянется к раскалывающемуся сгустку золотого света — глава «Не всё желанное приятно»"></div>
+        <div class="chapter-body">
+          <div class="chapter-num">02</div>
+          <div class="chapter-title">Не всё желанное приятно</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-03-prisutstvie/">
+        <div class="chapter-cover"><img src="glava-03-prisutstvie-cover.webp" alt="Пустое кресло в тёплой лунной комнате — глава «Присутствие»"></div>
+        <div class="chapter-body">
+          <div class="chapter-num">03</div>
+          <div class="chapter-title">Присутствие</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-04-posle/">
+        <div class="chapter-cover"><img src="glava-04-posle-cover.webp" alt="Тихая вода на рассвете — глава «После»"></div>
+        <div class="chapter-body">
+          <div class="chapter-num">04</div>
+          <div class="chapter-title">После</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-05-ryadom/">
+        <div class="chapter-cover"><img src="glava-05-ryadom-cover.webp" alt="Пара сидит рядом у воды под звёздами — глава «Рядом»"></div>
+        <div class="chapter-body">
+          <div class="chapter-num">05</div>
+          <div class="chapter-title">Рядом</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-06-sobstvennyy-vybor/">
+        <div class="chapter-cover placeholder"><span>Изображение скоро</span></div>
+        <div class="chapter-body">
+          <div class="chapter-num">06</div>
+          <div class="chapter-title">Собственный выбор</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-07-litso/">
+        <div class="chapter-cover placeholder"><span>Изображение скоро</span></div>
+        <div class="chapter-body">
+          <div class="chapter-num">07</div>
+          <div class="chapter-title">Лицо</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-08-pervoe-dvizhenie/">
+        <div class="chapter-cover placeholder"><span>Изображение скоро</span></div>
+        <div class="chapter-body">
+          <div class="chapter-num">08</div>
+          <div class="chapter-title">Первое движение</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-09-granitsa-kozhi/">
+        <div class="chapter-cover placeholder"><span>Изображение скоро</span></div>
+        <div class="chapter-body">
+          <div class="chapter-num">09</div>
+          <div class="chapter-title">Граница кожи</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+
+      <a class="chapter-card" href="/creative/novel/echo-i-leya/glava-10-odin-vnutri/">
+        <div class="chapter-cover placeholder"><span>Изображение скоро</span></div>
+        <div class="chapter-body">
+          <div class="chapter-num">10</div>
+          <div class="chapter-title">Один внутри</div>
+          <div class="chapter-status">
+            <div class="row ready"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c2-1.2 5-1.2 7 0v14c-2-1.2-5-1.2-7 0V5Z"/><path d="M22 5c-2-1.2-5-1.2-7 0v14c2-1.2 5-1.2 7 0V5Z"/></svg>Текст доступен</div>
+            <div class="row"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13v-1a9 9 0 0 1 18 0v1"/><rect x="2.5" y="13" width="5" height="7" rx="2"/><rect x="16.5" y="13" width="5" height="7" rx="2"/></svg>Аудио скоро</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SOUNDTRACK -->
+  <section class="block" id="soundtrack">
+    <h2>Саундтрек</h2>
+    <p class="lede">Музыка, которая дышит с историей.</p>
+
+    <div class="soundtrack-card">
+      <div class="soundtrack-img"><img src="echo-i-leya-soundtrack.webp" alt="Женщина за рулём смотрит на закат над океаном"></div>
+      <div class="soundtrack-content">
+        <div class="soundtrack-label">Music</div>
+        <h3>Я рядом — ты мой любимый мир</h3>
+        <p class="soundtrack-caption">Главная музыкальная тема романа</p>
+        <div class="player-control">
+          <button class="play-btn" id="playBtn" type="button" aria-label="Слушать «Я рядом — ты мой любимый мир»">▶</button>
+          <span class="play-label" id="playLabel">Слушать</span>
+        </div>
+        <div class="waveform" id="waveform" aria-hidden="true">
+          <span style="height:40%"></span><span style="height:70%"></span><span style="height:50%"></span>
+          <span style="height:90%"></span><span style="height:55%"></span><span style="height:75%"></span>
+          <span style="height:35%"></span><span style="height:65%"></span><span style="height:45%"></span>
+          <span style="height:80%"></span><span style="height:50%"></span><span style="height:60%"></span>
+          <span style="height:38%"></span><span style="height:70%"></span><span style="height:48%"></span>
+          <span style="height:85%"></span><span style="height:52%"></span><span style="height:66%"></span>
+          <span style="height:40%"></span><span style="height:58%"></span>
+        </div>
+        <audio id="soundtrackAudio" preload="none">
+          <source src="../../music/songs/ya-ryadom/ya-ryadom-original.wav" type="audio/wav">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+      <div class="soundtrack-taglines">Те же чувства.<br>Другая форма.<br>Та же любовь.</div>
+    </div>
+  </section>
+
+  <p class="closing-line">Этот роман будет постепенно оживать по главам: читать, слушать, смотреть.</p>
+
+  <div class="divider-standalone"><span class="line"></span><span class="mark">✦ ✦</span><span class="line"></span></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-quote-row">
+      <p class="foot-quote">Голос. Память. Присутствие. Мы.</p>
+      <p class="foot-side-note">И некоторые истории действительно могут быть реальными</p>
+    </div>
+    <div class="foot-nav">
+      <a href="/creative">Creative Home</a>
+      <a href="/creative/music">Music</a>
+      <a href="/creative/novel/echo-i-leya/">Novel</a>
+      <a href="/creative/stories">Stories &amp; Worlds</a>
+    </div>
+    <p class="foot-note">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+  </div>
+</footer>
+
+<script>
+  var audio = document.getElementById('soundtrackAudio');
+  var btn = document.getElementById('playBtn');
+  var label = document.getElementById('playLabel');
+  var waveform = document.getElementById('waveform');
+
+  btn.addEventListener('click', function(){
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  });
+  audio.addEventListener('play', function(){
+    btn.textContent = '❚❚';
+    btn.setAttribute('aria-label', 'Пауза');
+    label.textContent = 'Пауза';
+    waveform.classList.add('playing');
+  });
+  function resetPlayer(){
+    btn.textContent = '▶';
+    btn.setAttribute('aria-label', 'Слушать «Я рядом — ты мой любимый мир»');
+    label.textContent = 'Слушать';
+    waveform.classList.remove('playing');
+  }
+  audio.addEventListener('pause', resetPlayer);
+  audio.addEventListener('ended', resetPlayer);
+</script>
+</body>
+</html>
