@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sacred Stream — Milana's Choice</title>
-<meta name="description" content="Sacred Stream — a guided meditation in eight movements of flowing water, from ancient source to sacred current.">
+<title>Sacred Current — Milana's Choice</title>
+<meta name="description" content="Sacred Current — a guided meditation in eight movements of flowing water, from ancient source to sacred current.">
 <style>
   :root{
     --bg:#000000;
@@ -48,9 +48,20 @@
   .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
   .song-head .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.64),transparent);}
   .song-head .divider .mark{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
-  .cover{max-width:640px;margin:0 auto 40px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;position:relative;
-    border:1px solid rgba(255,217,158,.25);box-shadow:0 24px 70px -24px rgba(200,140,40,.55);}
-  .cover img{width:100%;height:100%;object-fit:cover;display:block;}
+  .practice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin:0 0 40px;
+    padding:36px;background:rgba(0,8,14,.72);border:1px solid rgba(255,217,158,.14);border-radius:16px;}
+  .practice article{min-width:0;}
+  .practice .language{font-family:var(--sans);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .practice h2{font-weight:400;font-size:26px;line-height:1.3;color:#f1e6d3;margin-bottom:24px;}
+  .practice p,.practice ul{font-size:16px;line-height:1.85;margin-bottom:20px;}
+  .practice ul{padding-left:20px;}
+  .practice li{padding-left:4px;margin-bottom:8px;}
+  .practice li::marker{color:var(--gold);}
+  .practice .closing{margin-bottom:0;color:#f1e6d3;}
+  @media(max-width:760px){
+    .practice{grid-template-columns:1fr;gap:32px;padding:26px 22px;}
+    .practice article+article{border-top:1px solid rgba(255,217,158,.16);padding-top:32px;}
+  }
   .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
   .block h2{font-weight:400;line-height:1.3;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1e6d3;text-align:center;margin-bottom:10px;}
   .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
@@ -114,21 +125,60 @@
     <a href="/creative">Creative</a><span class="sep">✦</span>
     <a href="/creative/music">Music</a><span class="sep">✦</span>
     Meditation<span class="sep">✦</span>
-    Sacred Stream
+    Sacred Current
   </div>
 
   <!-- HEAD -->
   <section class="song-head">
     <div class="badge">Meditation</div>
-    <h1>Sacred Stream</h1>
+    <h1>Sacred Current</h1>
     <p class="desc">A guided meditation in eight movements of flowing water — from ancient source to sacred current. Let each stream carry you a little deeper into stillness.</p>
     <div class="divider"><span class="line"></span><span class="mark">✦ ✦</span><span class="line"></span></div>
   </section>
 
-  <!-- COVER -->
-  <div class="cover">
-    <img src="sacred-stream-background.png" alt="Sacred Stream — moonlit waterfall flowing into a dark forest pool">
-  </div>
+  <!-- MEDITATIVE PRACTICE -->
+  <section class="practice" aria-label="About the meditation / О медитации">
+    <article lang="ru" aria-labelledby="practice-ru">
+      <div class="language">Русская версия</div>
+      <h2 id="practice-ru">Священный поток</h2>
+      <p>Иногда нужен не ответ. Иногда вам нужно пространство.</p>
+      <p>Священный поток — это древнее медитативное путешествие, созданное для того, чтобы помочь отпустить напряжение, с которым вы пытаетесь всё держать и снова почувствовать движение, лёгкость и пространство внутри себя.</p>
+      <p>Это возможность на время перестать подталкивать себя вперёд и позволить движению возникнуть естественно и органично, наполняя вас новым источником вдохновения.</p>
+      <p>Иногда самое важное происходит не тогда, когда мы наконец понимаем, что делать дальше, а тогда, когда внутри становится достаточно тихо, чтобы снова почувствовать себя.</p>
+      <p>Это путешествие для вас, если вы:</p>
+      <ul>
+        <li>перегружены мыслями;</li>
+        <li>переживаете переходный период;</li>
+        <li>пытаетесь принять решение;</li>
+        <li>чувствуете, что застряли;</li>
+        <li>устали от необходимости всё контролировать;</li>
+        <li>чувствуете внутреннюю эмоциональную скованность, даже если не находитесь в кризисе;</li>
+        <li>нуждаетесь не в совете, а в пространстве;</li>
+        <li>хотите снова почувствовать связь с собой.</li>
+      </ul>
+      <p class="closing">Вам не обязательно сейчас всё понимать.<br>Вам не обязательно знать следующий шаг.<br>Иногда достаточно просто почувствовать, что движение снова возможно.</p>
+    </article>
+    <article lang="en" aria-labelledby="practice-en">
+      <div class="language">English version</div>
+      <h2 id="practice-en">Sacred Current</h2>
+      <p>Sometimes you don’t need another answer.<br>Sometimes you need space.</p>
+      <p>Sacred Current is a guided meditative journey created to help you release the effort of holding everything together, soften inner tension, and return to a sense of movement, lightness, and spaciousness within yourself.</p>
+      <p>This is not a journey toward a predetermined answer.<br>It is an invitation to stop forcing the next step for a while and allow movement to arise naturally.</p>
+      <p>Sometimes the most meaningful shift happens not when we finally know what to do next, but when there is enough quiet inside to feel ourselves again.</p>
+      <p>I created this journey for you if you are:</p>
+      <ul>
+        <li>overwhelmed by your thoughts;</li>
+        <li>moving through a period of transition;</li>
+        <li>trying to make an important decision;</li>
+        <li>feeling stuck;</li>
+        <li>tired of constantly needing to stay in control;</li>
+        <li>emotionally constricted, even if you are not in crisis;</li>
+        <li>in need of space rather than advice;</li>
+        <li>longing to feel connected to yourself again.</li>
+      </ul>
+      <p class="closing">You don’t have to understand everything right now.<br>You don’t have to know the next step.<br>Sometimes it is enough to feel that movement is possible again.</p>
+    </article>
+  </section>
 
   <!-- TRACKS -->
   <section class="block">
