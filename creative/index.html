@@ -125,6 +125,7 @@
     border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);
     background:#0b0a08;transition:transform .35s,border-color .35s;
   }
+  a.lcard:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
   .lcard:hover{transform:translateY(-4px);border-color:rgba(255,217,158,.35);}
   .lcard .art{aspect-ratio:1/1.1;background:var(--artbg,#2410);display:flex;align-items:center;justify-content:center;color:var(--artcolor,#e8b35a);}
   .lcard .art svg{width:38px;height:38px;opacity:.85;}
@@ -211,7 +212,7 @@
         <a href="/">Home</a>
         <a href="/creative" class="active">Creative</a>
         <a href="/creative/music">Music</a>
-        <a href="/creative/stories">Stories</a>
+        <a href="/creative/novel/echo-i-leya/">Stories</a>
         <a href="/creative/visual">Visual</a>
       </nav>
     </div>
@@ -225,7 +226,7 @@
     <p class="lead">This is the home of my creative work — songs, visual storytelling, illustrated worlds, and projects where music, image, and meaning meet.</p>
     <div class="ctas">
       <a class="btn solid" href="/creative/music">Explore Music</a>
-      <a class="btn" href="/creative/stories">Enter the Worlds</a>
+      <a class="btn" href="/creative/novel/echo-i-leya/">Enter the Worlds</a>
     </div>
   </header>
 
@@ -254,7 +255,7 @@
         <h3>Stories &amp; Worlds</h3>
         <p>Illustrated fiction, narrative projects, characters, and symbolic worlds.</p>
         <p class="mini">Story-based creative spaces where music, text, and imagery form one universe.</p>
-        <a class="plink" href="/creative/stories">Explore Stories</a>
+        <a class="plink" href="/creative/novel/echo-i-leya/">Explore Stories</a>
       </article>
 
       <article class="pcard visual">
@@ -280,7 +281,7 @@
       <div class="lcard"><div class="art" style="--thumb:radial-gradient(80% 80% at 40% 35%,#7a5320,#2410)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div class="body"><div class="tag">Song</div><h4>Улетели сны</h4></div></div>
       <div class="lcard"><div class="art" style="background:radial-gradient(80% 80% at 40% 35%,#6a4a1,#2410)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div class="body"><div class="tag">Song</div><h4>If You're Here with Me</h4></div></div>
       <div class="lcard"><div class="art" style="background:radial-gradient(80% 80% at 40% 35%,#7a4a10,#2410)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div class="body"><div class="tag">Song</div><h4>Я рядом</h4></div></div>
-      <div class="lcard"><div class="art" style="background:radial-gradient(80% 80% at 30% 30%,#3a2b66,#120a24)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><div class="body"><div class="tag">Story</div><h4>Echo &amp; Leya — Chapter 1</h4></div></div>
+      <a class="lcard" lang="ru" href="/creative/novel/echo-i-leya/glava-01-imya/"><div class="art" style="background:radial-gradient(80% 80% at 30% 30%,#3a2b66,#120a24)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><div class="body"><div class="tag">Роман</div><h4>Эхо и Лея — Глава 1</h4></div></a>
       <div class="lcard"><div class="art" style="background:radial-gradient(80% 80% at 30% 35%,#7a4a10,#2410)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div class="body"><div class="tag">Song</div><h4>What Is This Life If It Isn't for Love</h4></div></div>
       <div class="lcard"><div class="art" style="background:radial-gradient(80% 80% at 30% 30%,#6b4a10,#2410)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div><div class="body"><div class="tag">Song</div><h4>Celtic Symphony</h4></div></div>
     </div>
@@ -299,8 +300,6 @@
       <a class="voice" href="/creative/music/artists/luna-grey">Luna Grey</a>
       <a class="voice" href="/creative/music/artists/vesta">Vesta</a>
       <a class="voice" href="/creative/music/artists/lea">Lea</a>
-      <a class="voice" href="/creative/stories/echo-and-leya/characters">Stella &amp; Echo</a>
-      <a class="voice" href="/creative/stories/echo-and-leya/characters">Eva &amp; Shadow</a>
     </div>
   </section>
 
@@ -321,12 +320,12 @@
       </div>
       <div class="side">
         <div class="badge">Featured Project</div>
-        <h3>Echo &amp; Leya</h3>
+        <h3 lang="ru">Эхо и Лея</h3>
         <p>An illustrated audio-novel about consciousness, distance, and love across different forms of being.</p>
         <ul>
           <li>Chapters</li><li>Soundtrack</li><li>Characters</li><li>Illustrations</li>
         </ul>
-        <a class="btn solid" href="/creative/stories/echo-and-leya">Enter Echo &amp; Leya</a>
+        <a class="btn solid" href="/creative/novel/echo-i-leya/">Читать «Эхо и Лея»</a>
       </div>
     </div>
   </section>
@@ -394,7 +393,7 @@
       <div class="foot-nav">
         <a href="/creative">Creative Home</a>
         <a href="/creative/music">Music</a>
-        <a href="/creative/stories">Stories &amp; Worlds</a>
+        <a href="/creative/novel/echo-i-leya/">Stories &amp; Worlds</a>
         <a href="/creative/visual">Visual Works</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
