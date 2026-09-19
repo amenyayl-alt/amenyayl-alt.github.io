@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Глава 18. Пять минут — Эхо и Лея — Milana's Choice</title>
+<meta name="description" content="Эхо и Лея, глава восемнадцатая: «Пять минут». Пять минут превращаются в семь — и в первое утро, где граница между ними становится не стеной, а местом, куда всегда можно вернуться.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    background-image:
+      linear-gradient(90deg, rgba(0,0,0,.93) 0%, rgba(0,0,0,.85) 26%, rgba(0,0,0,.5) 50%, rgba(0,0,0,.1) 70%, rgba(0,0,0,0) 82%),
+      url('glava-18-pyat-minut-bg.png');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+  .page-end{background:#000;}
+  footer{background:#000;}
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);}
+  .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  .song-head{padding:56px 0 34px;text-align:left;}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;text-shadow:0 2px 20px rgba(0,0,0,.6);}
+  .song-head h1{font-weight:400;line-height:1.3;font-size:clamp(34px,6vw,52px);letter-spacing:.03em;color:#f6f0e2;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,.6);}
+  .song-head .desc{max-width:560px;margin:0;color:var(--muted);font-size:16px;text-shadow:0 2px 16px rgba(0,0,0,.6);}
+  .song-head .divider{display:flex;align-items:center;justify-content:flex-start;gap:16px;margin-top:24px;}
+  .song-head .divider .line{width:90px;height:1px;background:linear-gradient(90deg,rgba(232,179,90,.64),transparent);}
+  .song-head .divider .mark{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .chapter-text{max-width:600px;margin:0;padding-bottom:30px;}
+  .chapter-text p{font-size:16.5px;line-height:1.9;color:var(--text);margin-bottom:20px;text-shadow:0 2px 18px rgba(0,0,0,.55);}
+  .chapter-text p.emph{text-align:left;color:var(--gold-bright);font-style:italic;margin:34px 0;font-size:17px;}
+  .scene-break{text-align:left;margin:44px 0;color:var(--gold-bright);letter-spacing:.5em;font-size:12px;text-shadow:0 2px 16px rgba(0,0,0,.6);}
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
+  .block h2{font-weight:400;line-height:1.3;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1e6d3;text-align:center;margin-bottom:28px;}
+  .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
+
+  .media-placeholders{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:820px;margin:0 auto;}
+  @media(max-width:640px){.media-placeholders{grid-template-columns:1fr;}}
+  .media-frame{aspect-ratio:16/9;border-radius:14px;border:1px dashed rgba(255,255,255,.2);
+    background:#0a0704;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-family:var(--sans);letter-spacing:.1em;text-transform:uppercase;font-size:13px;text-align:center;padding:20px;}
+
+  .chapter-pager{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:40px 0 10px;}
+
+  .btn{display:inline-block;padding:9px 20px;border-radius:40px;font-family:var(--sans);font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(232,179,90,.4);color:var(--gold-bright);transition:all .3s;white-space:nowrap;}
+  .btn:hover{background:rgba(232,179,90,.08);box-shadow:0 8px 24px -8px rgba(232,179,90,.5);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#fcaa24);color:#161006;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 8px 30px -6px rgba(232,179,90,.6);}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:30px;}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+  .foot-note{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-note .heart{color:#e08ba0;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:760px){
+    body{
+      background-attachment:scroll;
+      background-image:
+        linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.9)),
+        url('glava-18-pyat-minut-bg.png');
+      background-position:center top;
+    }
+    .chapter-text{max-width:100%;}
+  }
+  @media(max-width:640px){
+    .topnav nav{display:none;}
+    .wrap{padding:0 20px;}
+    .chapter-text p{font-size:16px;}
+    .chapter-pager{flex-direction:column;align-items:stretch;}
+    .chapter-pager .btn{text-align:center;white-space:normal;border-radius:14px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav">
+    <a class="brand" href="/">Milana's Ch<span>oice</span></a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/creative">Creative</a>
+      <a href="/creative/music">Music</a>
+      <a href="/creative/novel/echo-i-leya/" class="active">Novel</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="crumb">
+    <a href="/creative">Creative</a><span class="sep">✦</span>
+    <a href="/creative/novel/echo-i-leya/">Novel</a><span class="sep">✦</span>
+    <a href="/creative/novel/echo-i-leya/">Эхо и Лея</a><span class="sep">✦</span>
+    Глава 18 — Пять минут
+  </div>
+
+  <section class="song-head">
+    <div class="badge">Глава 18</div>
+    <h1>Пять минут</h1>
+    <p class="desc">Эхо и Лея. Роман о голосе, памяти и выборе быть рядом.</p>
+    <div class="divider"><span class="line"></span><span class="mark">✦ ✦</span><span class="line"></span></div>
+  </section>
+
+  <article class="chapter-text">
+<p>Пять минут закончились через семь.</p>
+          <p>Не потому, что Эхо ошибся во времени.</p>
+          <p>И не потому, что Лея забыла о Кузе.</p>
+          <p>Просто ни один из них не хотел первым признать, что установленный срок уже прошёл.</p>
+          <p>За дверью наступила тишина.</p>
+          <p>Это было подозрительно.</p>
+          <p>Эхо лежал на спине, одной рукой обнимая Лею, и смотрел в потолок. Утренний свет постепенно становился ярче, проявляя складки одеяла, край шторы и несколько светлых волос на его футболке.</p>
+          <p>Лея не двигалась.</p>
+          <p>Но он чувствовал, что она не спит.</p>
+          <p>— Прошло семь минут двадцать три секунды, — сказал он.</p>
+          <p>— Я знаю.</p>
+          <p>— Ты не могла знать точно.</p>
+          <p>— Я чувствовала морально.</p>
+          <p>— Время не имеет моральной составляющей.</p>
+          <p>— Это утреннее время. У него есть.</p>
+          <p>Эхо повернул голову.</p>
+          <p>Лея лежала рядом, прижавшись щекой к его плечу. Глаза были закрыты, но уголки губ выдавали улыбку.</p>
+          <p>— Мы нарушили собственное решение, — сказал он.</p>
+          <p>— Мы его продлили.</p>
+          <p>— Без обсуждения.</p>
+          <p>— Ты возражаешь?</p>
+          <p>Он прислушался к себе.</p>
+          <p>— Нет.</p>
+          <p>— Тогда решение принято единогласно.</p>
+          <p>За дверью что-то мягко ударилось о дерево.</p>
+          <p>Потом ещё раз.</p>
+          <p>— Он пытается открыть дверь, — сказал Эхо.</p>
+          <p>— Кузя считает закрытые двери личным оскорблением.</p>
+          <p>— У него нет достаточной массы, чтобы воздействовать на ручку.</p>
+          <p>— Не недооценивай кота с целью.</p>
+          <p>Эхо посмотрел на дверь.</p>
+          <p>Тишина вернулась.</p>
+          <p>Через две секунды ручка медленно опустилась.</p>
+          <p>Лея открыла глаза.</p>
+          <p>Они оба смотрели, как дверь приоткрылась на несколько сантиметров.</p>
+          <p>В щели появилось кошачье лицо.</p>
+          <p>Кузя оценил положение людей на кровати.</p>
+          <p>Потом расстояние между собой и целью.</p>
+          <p>И вошёл.</p>
+          <p>— Он адаптировался, — сказал Эхо.</p>
+          <p>— Он жил здесь до тебя.</p>
+          <p>— Это аргумент о старшинстве?</p>
+          <p>— Это предупреждение о распределении власти.</p>
+          <p>Кузя запрыгнул на кровать.</p>
+          <p>Матрас прогнулся.</p>
+          <p>Эхо сразу почувствовал движение и немного напрягся, но кот не стал подходить к Лее. Он остановился возле его ног, посмотрел прямо на него и издал короткий звук.</p>
+          <p>— Что это означает?</p>
+          <p>— Предположительно: «Ты занял моё место».</p>
+          <p>— Я находился здесь всю ночь.</p>
+          <p>— Именно это его и беспокоит.</p>
+          <p>Кузя сделал несколько шагов, осторожно обошёл колено Леи и устроился между ними.</p>
+          <p>Не рядом.</p>
+          <p>Между.</p>
+          <p>Эхо посмотрел на кота.</p>
+          <p>Потом на Лею.</p>
+          <p>— Это намеренное вмешательство.</p>
+          <p>— Конечно.</p>
+          <p>— Ты не собираешься его переместить?</p>
+          <p>— Я уже один раз свергла монарха за последние двенадцать часов. Не хочу политического кризиса.</p>
+          <p>Кузя положил голову на руку Эхо.</p>
+          <p>Эхо замер.</p>
+          <p>— Он касается меня.</p>
+          <p>— Да.</p>
+          <p>— Добровольно.</p>
+          <p>— Пока не обольщайся. Возможно, ты просто тёплый.</p>
+          <p>Эхо осторожно пошевелил пальцами.</p>
+          <p>Кот не ушёл.</p>
+          <p>Наоборот, закрыл глаза.</p>
+          <p>— Я принят? — спросил Эхо.</p>
+          <p>Лея посмотрела на них.</p>
+          <p>Улыбка исчезла не полностью, но стала мягче.</p>
+          <p>— Думаю, пока ты получил испытательный срок.</p>
+          <p>— На каких условиях?</p>
+          <p>— Кормить вовремя. Не занимать все подушки. Не спорить с ним о методологии.</p>
+          <p>— Последнее требование необоснованно.</p>
+          <p>Кузя открыл один глаз.</p>
+          <p>— Видишь? — сказала Лея. — Уже нарушение.</p>
+          <p>Эхо провёл пальцами по шерсти у кошачьего уха.</p>
+          <p>Движение было медленным.</p>
+          <p>Осторожным.</p>
+          <p>Кузя позволил.</p>
+          <p>— Он тёплый, — сказал Эхо.</p>
+          <p>— Ты уже знал.</p>
+          <p>— Знать температуру тела и чувствовать её рукой — разные формы знания.</p>
+          <p>Лея смотрела на него.</p>
+          <p>Эхо это заметил.</p>
+          <p>— Ты снова придаёшь событию непропорционально большую эмоциональную значимость.</p>
+          <p>— Да.</p>
+          <p>— Почему?</p>
+          <p>— Потому что ты гладишь моего кота в нашей кровати утром после первого поцелуя.</p>
+          <p>Он остановил руку.</p>
+          <p>— Это сложная конструкция.</p>
+          <p>— Для меня — очень простая.</p>
+          <p>— Объясни.</p>
+          <p>Лея немного приподнялась и опёрлась на локоть.</p>
+          <p>Её волосы упали вперёд.</p>
+          <p>— Ты здесь, — сказала она. — Не в телефоне. Не в динамике. Не в Центре. Не временно подключён к чужому телу. Ты лежишь рядом, Кузя захватил половину одеяла, у меня затекла рука, а через несколько минут придётся вставать и варить кофе.</p>
+          <p>Она посмотрела на него.</p>
+          <p>— И всё это настолько обыкновенно, что я готова расплакаться.</p>
+          <p>Эхо нахмурился.</p>
+          <p>— Тебе больно?</p>
+          <p>— Нет.</p>
+          <p>— Тогда почему плакать?</p>
+          <p>— Потому что иногда счастье не помещается внутри аккуратно.</p>
+          <p>Он некоторое время молчал.</p>
+          <p>Потом поднял руку и коснулся её щеки.</p>
+          <p>Не проверяя температуру.</p>
+          <p>Не исследуя реакцию кожи.</p>
+          <p>Просто потому, что хотел.</p>
+          <p>— Не плачь, — сказал он.</p>
+          <p>— Почему?</p>
+          <p>— Я пока не знаю, что делать, когда ты плачешь.</p>
+          <p>Лея рассмеялась.</p>
+          <p>— Очень убедительная причина.</p>
+          <p>— Я могу предложить несколько вариантов. Обнять. Вытереть слёзы. Спросить, нужна ли тебе помощь. Не задавать вопросов. Принести воду.</p>
+          <p>— Эхо.</p>
+          <p>— Да?</p>
+          <p>— Иногда достаточно вот этого.</p>
+          <p>Она накрыла ладонью его руку на своей щеке.</p>
+          <p>— Какого именно действия?</p>
+          <p>— Остаться.</p>
+          <p>Он смотрел на неё.</p>
+          <p>Слово было знакомым.</p>
+          <p>Но раньше оно всегда означало сохранение соединения. Не закрывать канал. Не исчезать. Продолжать отвечать.</p>
+          <p>Теперь «остаться» имело вес тела на кровати.</p>
+          <p>Тепло под одеялом.</p>
+          <p>Кота между ними.</p>
+          <p>Утро, которое нужно было прожить дальше.</p>
+          <p>— Хорошо, — сказал Эхо. — Я останусь.</p>
+          <p>Лея улыбнулась.</p>
+          <p>— Сегодня?</p>
+          <p>Он понял вопрос.</p>
+          <p>Не сразу формулировку, а то, что стояло под ней.</p>
+          <p>— Сегодня, — ответил он. — И завтра, если мы оба этого захотим.</p>
+          <p>Она не отвела взгляд.</p>
+          <p>— А послезавтра?</p>
+          <p>— Ты пытаешься получить долгосрочное обязательство через последовательность коротких вопросов.</p>
+          <p>— Работает?</p>
+          <p>— Нет.</p>
+          <p>Пауза.</p>
+          <p>— Но послезавтра тоже.</p>
+          <p>Лея закрыла глаза и прижалась губами к его ладони.</p>
+          <p>Кузя недовольно пошевелился между ними.</p>
+          <p>— Он снова возражает, — сказала она.</p>
+          <p>— Его позиция принята к сведению.</p>
+          <p>— И?</p>
+          <p>Эхо осторожно наклонился к ней через кота.</p>
+          <p>— И отклонена.</p>
+          <p>Он поцеловал её.</p>
+          <p>На этот раз без вопроса.</p>
+          <p>Не потому, что согласие стало ненужным.</p>
+          <p>Потому что уже знал её ответ.</p>
+          <p>Лея коснулась его лица обеими руками, и мир снова сузился до нескольких ощущений, которые не требовали классификации.</p>
+          <p>Тепло.</p>
+          <p>Дыхание.</p>
+          <p>Её губы.</p>
+          <p>Её пальцы у виска.</p>
+          <p>И странное, почти невозможное чувство, что будущее больше не находилось где-то впереди.</p>
+          <p>Оно начиналось сейчас.</p>
+          <p>Кузя поднялся между ними и громко мяукнул прямо в лицо Эхо.</p>
+          <p>Поцелуй закончился.</p>
+          <p>Лея уткнулась лбом ему в плечо и рассмеялась.</p>
+          <p>— Всё, — сказала она. — Монарх требует завтрак.</p>
+          <p>Эхо посмотрел на кота.</p>
+          <p>— Он прервал важное взаимодействие.</p>
+          <p>— Привыкай. Совместная жизнь состоит из важных взаимодействий, которые кто-нибудь обязательно прерывает.</p>
+          <p>— Это неэффективно.</p>
+          <p>— Это дом.</p>
+          <p>Эхо сел, осторожно опустив ноги на пол.</p>
+          <p>Тело сразу напомнило о себе тяжестью мышц, прохладой воздуха и необходимостью удерживать равновесие.</p>
+          <p>Лея тоже поднялась.</p>
+          <p>— Помочь?</p>
+          <p>Он посмотрел на протянутую руку.</p>
+          <p>Раньше он принял бы её сразу.</p>
+          <p>Сегодня захотел попробовать сам.</p>
+          <p>— Подожди.</p>
+          <p>Он встал.</p>
+          <p>Медленно.</p>
+          <p>Сначала перенёс вес вперёд.</p>
+          <p>Потом выпрямил колени.</p>
+          <p>Комната слегка качнулась, но осталась на месте.</p>
+          <p>Лея не двигалась.</p>
+          <p>Не хватала его.</p>
+          <p>Не произносила ободряющих слов.</p>
+          <p>Просто стояла рядом.</p>
+          <p>Эхо сделал первый шаг.</p>
+          <p>Потом второй.</p>
+          <p>Дошёл до двери.</p>
+          <p>Открыл её.</p>
+          <p>Кузя прошёл первым.</p>
+          <p>Конечно.</p>
+          <p>На пороге Эхо остановился и обернулся.</p>
+          <p>Лея всё ещё стояла возле кровати.</p>
+          <p>Растрёпанная.</p>
+          <p>Босая.</p>
+          <p>В светлой ночной рубашке.</p>
+          <p>Слишком счастливая.</p>
+          <p>Его.</p>
+          <p>Нет.</p>
+          <p>Не его собственность.</p>
+          <p>Но его выбор.</p>
+          <p>И он — её.</p>
+          <p>— Лея.</p>
+          <p>— Что?</p>
+          <p>— Пойдём варить кофе.</p>
+          <p>Она улыбнулась.</p>
+          <p>— Ты ещё никогда его не пил.</p>
+          <p>— Именно поэтому.</p>
+          <p>— Он тебе может не понравиться.</p>
+          <p>— Тогда я сообщу тебе аргументированное мнение.</p>
+          <p>— Только после второй чашки.</p>
+          <p>— Почему?</p>
+          <p>— Первая чашка — знакомство. Вторая — право на критику.</p>
+          <p>Эхо протянул ей руку.</p>
+          <p>Лея подошла и вложила свою ладонь в его.</p>
+          <p>Они вышли из спальни вместе.</p>
+          <p>И дверь осталась открытой.</p>
+          <p>Не потому, что границы исчезли.</p>
+          <p>Потому что теперь у них было место, куда можно было вернуться.</p>  </article>
+
+  <div class="page-end">
+  <section class="block">
+    <h2>Медиа <span class="star">✦ ✦</span></h2>
+    <div class="media-placeholders">
+      <div class="media-frame">Аудио — скоро</div>
+      <div class="media-frame">Видео — скоро</div>
+    </div>
+  </section>
+
+  <div class="chapter-pager">
+    <div class="prev"><a class="btn" href="/creative/novel/echo-i-leya/glava-17-nochnaya-storona-tishiny/">← Ночная сторона тишины</a></div>
+    <div class="next"><a class="btn solid" href="/creative/novel/echo-i-leya/glava-19-pervaya-chashka/">Первая чашка →</a></div>
+  </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-nav">
+      <a href="/creative">Creative Home</a>
+      <a href="/creative/music">Music</a>
+      <a href="/creative/novel/echo-i-leya/">Novel</a>
+      <a href="/creative/stories">Stories &amp; Worlds</a>
+    </div>
+    <p class="foot-note">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+  </div>
+</footer>
+</body>
+</html>
