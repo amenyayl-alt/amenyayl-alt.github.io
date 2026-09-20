@@ -68,11 +68,10 @@
   }
   .featured .cover{
     aspect-ratio:1/1;border-radius:14px;overflow:hidden;
-    background:radial-gradient(80% 80% at 50% 40%, #6a4a1c, #241505);
+    background:transparent;
     display:flex;align-items:center;justify-content:center;color:var(--gold-bright);
     border:1px solid rgba(255,217,158,.25);
   }
-  .featured .cover svg{width:60px;height:60px;}
   .featured .badge{font-family:var(--sans);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:12px;}
   .featured h3{font-weight:300;font-size:clamp(24px,3vw,34px);margin-bottom:14px;color:#f6efe0;}
   .featured p{color:#c9bfa8;max-width:520px;margin-bottom:26px;}
@@ -165,10 +164,8 @@
 
     <!-- FEATURED RELEASE -->
     <section class="featured" aria-labelledby="featured-title">
-      <div class="cover" aria-hidden="true">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M20 4 C23 14 26 17 36 20 C26 23 23 26 20 36 C17 26 14 23 4 20 C14 17 17 14 20 4 Z"/>
-        </svg>
+      <div class="cover">
+        <img src="/creative/music/songs/uleteli-sny/uleteli-sny-cover.jpg" alt="Улетели сны — cover art" width="800" height="800" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit">
       </div>
       <div>
         <div class="badge">Featured Release</div>
