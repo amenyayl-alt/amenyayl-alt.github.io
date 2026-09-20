@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rise to Meet Me — Milana's Choice</title>
+<meta name="description" content="Rise to Meet Me — a deep house song about freedom, self-possession, and love between equals. Listen, watch the video, and read the lyrics.">
+<style>
+  :root{
+    --bg:#000000;
+    --gold:#e8b35a;
+    --gold-bright:#ffdf9e;
+    --text:#e9e2d4;
+    --muted:#b8b3ac;
+    --serif:"Georgia","Times New Roman",serif;
+    --sans:"Trebuchet MS",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    color:var(--text);font-family:var(--serif);line-height:1.7;
+    background-color:#000;
+    background-image:
+      radial-gradient(ellipse at center, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.06) 68%, rgba(0,0,0,0) 88%),
+      url('rise-to-meet-me-background.png');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+
+  .topnav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+  .topnav .brand{letter-spacing:.18em;font-size:15px;color:var(--gold-bright);font-family:var(--sans);text-transform:uppercase;}
+  .topnav .brand span{color:var(--muted);}
+  .topnav nav{display:flex;gap:22px;}
+  .topnav nav a{font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .topnav nav a:hover,.topnav nav a.active{color:var(--gold-bright);}
+
+  .crumb{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:26px 0 8px;}
+  .crumb a{color:var(--gold);} .crumb a:hover{color:var(--gold-bright);}
+  .crumb .sep{margin:0 8px;color:var(--muted);}
+
+  .song-head{padding:40px 0 34px;text-align:center;}
+  .song-head .badge{font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+  .song-head h1{font-weight:300;font-size:clamp(30px,5vw,46px);letter-spacing:.03em;color:#f6f0e2;margin-bottom:16px;}
+  .song-head .desc{max-width:640px;margin:0 auto;color:var(--muted);font-size:16px;}
+  .song-head .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px;}
+  .song-head .divider .line{width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,179,90,.4),transparent);}
+  .song-head .divider .diam{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
+
+  .cover{
+    max-width:560px;margin:0 auto 40px;aspect-ratio:16/9;border-radius:16px;overflow:hidden;
+    background:radial-gradient(80% 80% at 50% 40%, #6a4a1c, #241505);
+    display:flex;align-items:center;justify-content:center;color:var(--gold-bright);
+    border:1px solid rgba(255,217,158,.25);box-shadow:0 24px 70px -24px rgba(200,140,40,.5);
+  }
+  .cover svg{width:90px;height:90px;}
+
+  .block{border-top:1px solid rgba(255,255,255,.06);padding:46px 0;}
+  .block h2{font-weight:300;font-size:clamp(20px,3vw,26px);letter-spacing:.08em;color:#f1ead9;text-align:center;margin-bottom:34px;}
+  .block h2 .star{color:var(--gold-bright);letter-spacing:.3em;font-size:12px;display:block;margin-top:12px;}
+
+  /* player */
+  .player{max-width:560px;margin:0 auto;text-align:center;}
+  .player .bar{height:6px;border-radius:6px;background:rgba(255,255,255,.1);position:relative;margin:20px 0 26px;overflow:hidden;}
+  .player .bar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#e8b35a,#ffdf9e);}
+  .player .note{color:var(--muted);font-size:13px;font-family:var(--sans);letter-spacing:.06em;}
+  .player .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+
+  .btn{display:inline-block;padding:13px 26px;border-radius:40px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,217,158,.4);color:var(--gold-bright);transition:all .3s;}
+  .btn:hover{background:rgba(232,179,90,.12);box-shadow:0 0 24px rgba(232,179,90,.25);transform:translateY(-1px);}
+  .btn.solid{background:linear-gradient(135deg,#e8b35a,#caa24a);color:#16110a;border:none;font-weight:600;}
+  .btn.solid:hover{box-shadow:0 0 30px rgba(232,179,90,.55);}
+
+  /* lyrics */
+  .lyrics{max-width:560px;margin:0 auto;}
+  .lyrics .stanza{margin-bottom:34px;text-align:center;}
+  .lyrics p{font-size:17px;line-height:2;color:#e9e2d4;}
+  .lyrics .divider2{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 0 34px;}
+  .lyrics .divider2 .l{width:50px;height:1px;background:rgba(232,179,90,.35);}
+  .lyrics .divider2 .d{color:var(--gold-bright);letter-spacing:.3em;font-size:11px;}
+
+  /* video */
+  .video-box{max-width:640px;margin:0 auto;aspect-ratio:16/9;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:#0a0704;overflow:hidden;position:relative;}
+  .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  /* credits */
+  .credits{max-width:560px;margin:0 auto;}
+  .credits ul{list-style:none;}
+  .credits li{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--muted);font-size:15px;}
+  .credits li .k{color:#c9bfa8;}
+  .credits li:last-child{border-bottom:none;}
+
+  /* related */
+  .related{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;}
+  .rcard{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0b0a08;transition:transform .3s,border-color .3s;text-align:center;padding:18px 14px;}
+  .rcard:hover{transform:translateY(-4px);border-color:rgba(255,217,158,.35);}
+  .rcard .art{width:64px;height:64px;margin:0 auto 12px;border-radius:10px;background:radial-gradient(80% 80% at 50% 40%, #5a3a18, #1e1206);display:flex;align-items:center;justify-content:center;color:var(--gold-bright);}
+  .rcard .art svg{width:24px;height:24px;}
+  .rcard h4{font-weight:400;font-size:14px;color:#eee7d6;}
+
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:40px 0;margin-top:30px;}
+  .foot-line{text-align:center;color:var(--muted);font-size:13px;}
+  .foot-line .heart{color:#e08ba0;}
+  .foot-nav{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin-bottom:22px;}
+  .foot-nav a{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s;}
+  .foot-nav a:hover{color:var(--gold-bright);}
+
+  @media(max-width:640px){.topnav nav{display:none;}}
+
+  body{background-color:#071323;}
+  .cover{background:#101c2c;}
+  .player{padding-bottom:46px;}
+  audio{color-scheme:dark;filter:none!important;}
+  a:focus-visible{outline:2px solid var(--gold-bright);outline-offset:5px;}
+  @media(max-width:640px){
+    body{background-image:linear-gradient(rgba(4,14,29,.78),rgba(4,14,29,.9)),url('rise-to-meet-me-background.png');background-position:86% center;}
+    .wrap{padding:0 20px;}
+    .song-head{padding-top:30px;}
+    .lyrics p{font-size:16px;}
+  }
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+  /* placeholders until audio / video are ready */
+  .soon{font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;}
+  .player .soon{padding:22px 26px;border:1px dashed rgba(255,217,158,.35);border-radius:14px;}
+  .video-box .soon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="topnav">
+      <a class="brand" href="/">Milana's <span>Choice</span></a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/creative">Creative</a>
+        <a href="/creative/music" class="active">Music</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="crumb">
+      <a href="/creative">Creative</a><span class="sep">✦</span>
+      <a href="/creative/music">Music</a><span class="sep">✦</span>
+      Rise to Meet Me
+    </div>
+
+    <!-- HEAD -->
+    <section class="song-head">
+      <div class="badge">Song</div>
+      <h1>Rise to Meet Me</h1>
+      <p class="desc">A deep house declaration of self-possession — a love that meets you eye to eye and never asks you to become smaller.</p>
+      <div class="divider"><span class="line"></span><span class="diam">✦ ✦</span><span class="line"></span></div>
+    </section>
+
+    <!-- COVER + PLAYER -->
+    <div class="cover">
+      <img src="rise-to-meet-me-cover.png" alt="Rise to Meet Me — cover art" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+
+    <section class="block">
+      <h2>Listen <span class="star">✦ ✦</span></h2>
+      <div class="player">
+        <!-- AUDIO PLACEHOLDER. When the MP3 is ready, put it next to this file as rise-to-meet-me-original.mp3
+             and replace the <div class="soon"> line below with:
+        <audio controls preload="metadata" style="width:100%;max-width:560px;">
+          <source src="rise-to-meet-me-original.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="cta">
+          <a class="btn solid" href="rise-to-meet-me-original.mp3" download>Download Original</a>
+        </div>
+        -->
+        <div class="soon">Audio coming soon</div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="block">
+      <h2>Video <span class="star">✦ ✦</span></h2>
+      <div class="video-box">
+        <!-- VIDEO PLACEHOLDER. When the YouTube link is ready, replace the <div class="soon"> line below with:
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Rise to Meet Me — official video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        -->
+        <div class="soon">Video coming soon</div>
+      </div>
+    </section>
+
+    <!-- LYRICS -->
+    <section class="block" id="lyrics">
+      <h2>Lyrics <span class="star">✦ ✦</span></h2>
+      <div class="lyrics">
+        <div class="stanza"><p>Don’t reach to claim me.<br>Rise to meet me.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>I was never waiting to be found,<br>never a half in search of whole.<br>I built a home beneath my skin,<br>I learned the language of my soul.</p></div>
+        <div class="stanza"><p>Now you’re standing at the edge,<br>close enough to feel the fire.<br>But wanting me is not the same<br>as being worthy of desire.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>Don’t ask me to dim my light<br>so yours can burn brighter.<br>Don’t call it love if I must leave<br>myself outside the door.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>I belong to me—<br>my body, my silence, my gravity.<br>I can come close, I can let you in,<br>without surrendering everything.</p></div>
+        <div class="stanza"><p>I belong to me.<br>If I choose you, you’ll know what it means.<br>Don’t try to conquer what was born free.<br>Rise to meet me.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>Rise…<br>Rise to meet me.<br>Eye to eye—<br>where love should be.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>You say you love the way I fly—<br>will you love my wings beside you?<br>Can you see the mind behind my eyes,<br>the life I carry inside me?</p></div>
+        <div class="stanza"><p>Don’t worship me and don’t contain me.<br>I need no pedestal or cage.<br>Bring me truth without possession.<br>Bring me strength without control.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>I will not become smaller<br>to make your shadow tall.<br>If you want the whole woman,<br>come to me with all you are.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>I belong to me—<br>my body, my silence, my gravity.<br>I can come close, I can let you in,<br>without surrendering everything.</p></div>
+        <div class="stanza"><p>I belong to me.<br>If I choose you, you’ll know what it means.<br>Don’t try to conquer what was born free.<br>Rise to meet me.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>Come close without a chain.<br>Touch me without a claim.<br>Know my name before you name me yours.</p></div>
+        <div class="stanza"><p>Stand steady in my weather.<br>Let freedom bring us together.<br>Then I may cross the distance on my own.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>No victory.<br>No defeat.<br>Just two hearts<br>that choose to meet.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>I belong to me—<br>and that is why my love is given freely.<br>I can be almost yours tonight<br>and still wake up inside my life.</p></div>
+        <div class="stanza"><p>I belong to me.<br>If I choose you, you’ll know what it means.<br>Be strong enough to honor what you see.<br>Rise to meet me.</p></div>
+        <div class="divider2"><span class="l"></span><span class="d">✦</span><span class="l"></span></div>
+        <div class="stanza"><p>Almost yours,<br>always mine.<br>If I choose you,<br>meet me eye to eye.</p></div>
+        <div class="stanza"><p>Rise…<br>Rise to meet me.</p></div>
+      </div>
+    </section>
+</div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-nav">
+        <a href="/creative">Creative Home</a>
+        <a href="/creative/music">Music</a>
+        <a href="/creative/stories">Stories &amp; Worlds</a>
+        <a href="/creative/visual">Visual Works</a>
+      </div>
+      <p class="foot-line">Creative work by Selesta / Selesta Reel <span class="heart">♡</span></p>
+    </div>
+  </footer>
+
+</body>
+</html>
