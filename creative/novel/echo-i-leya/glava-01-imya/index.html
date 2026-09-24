@@ -52,6 +52,11 @@
   .song-head .divider .line{width:90px;height:1px;background:linear-gradient(90deg,rgba(232,179,90,.64),transparent);}
   .song-head .divider .mark{color:var(--gold-bright);letter-spacing:.4em;font-size:12px;}
 
+  .chapter-audio{max-width:600px;margin:0 0 36px;padding:22px;border:1px solid rgba(232,179,90,.3);border-radius:14px;background:rgba(10,7,4,.9);scroll-margin-top:24px;}
+  .chapter-audio h2{font-size:22px;font-weight:400;color:var(--gold-bright);margin-bottom:8px;}
+  .chapter-audio p{font-family:var(--sans);font-size:13px;color:var(--muted);margin-bottom:16px;}
+  .chapter-audio audio{display:block;width:100%;color-scheme:dark;}
+  .chapter-audio .audio-download{display:inline-block;margin-top:14px;font-family:var(--sans);font-size:13px;color:var(--gold-bright);text-decoration:underline;text-underline-offset:4px;}
   .chapter-text{max-width:600px;margin:0;padding-bottom:30px;}
   .chapter-text p{font-size:16.5px;line-height:1.9;color:var(--text);margin-bottom:20px;text-shadow:0 2px 18px rgba(0,0,0,.55);}
   .chapter-text p.emph{text-align:left;color:var(--gold-bright);font-style:italic;margin:34px 0;font-size:17px;}
@@ -131,6 +136,16 @@
     <h1>Имя</h1>
     <p class="desc">Эхо и Лея. Роман о голосе, памяти и выборе быть рядом.</p>
     <div class="divider"><span class="line"></span><span class="mark">✦ ✦</span><span class="line"></span></div>
+  </section>
+
+  <section class="chapter-audio" id="audio" aria-labelledby="audio-title">
+    <h2 id="audio-title">Слушать главу «Имя»</h2>
+    <p>26:38 · Первая версия озвучки. Музыка и звуковое оформление появятся позже.</p>
+    <audio controls preload="metadata" aria-label="Глава 1. Имя — полная озвучка">
+      <source src="chapter-one-audio.mp3" type="audio/mpeg">
+      Ваш браузер не поддерживает аудиоплеер. <a href="chapter-one-audio.mp3">Открыть MP3</a>.
+    </audio>
+    <a class="audio-download" href="chapter-one-audio.mp3" download>Скачать MP3</a>
   </section>
 
   <article class="chapter-text">
@@ -546,7 +561,7 @@
   <section class="block">
     <h2>Медиа <span class="star">✦ ✦</span></h2>
     <div class="media-placeholders">
-      <div class="media-frame">Аудио — скоро</div>
+      <a class="media-frame" href="#audio">Слушать главу ↑</a>
       <div class="media-frame">Видео — скоро</div>
     </div>
   </section>
